@@ -7,7 +7,7 @@
 <script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/vendor/libs/i18n/i18n.js"></script>
 <script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/vendor/libs/typeahead-js/typeahead.js"></script>
 <script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/vendor/js/menu.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <!-- endbuild -->
 
 <!-- Vendors JS -->

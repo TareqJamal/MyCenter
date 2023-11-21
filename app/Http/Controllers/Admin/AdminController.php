@@ -13,6 +13,7 @@ class AdminController extends Controller
     public array $data = ['name', 'email', 'phone', 'image', 'password'];
     public string $route = "admins";
     public string $folderImages = "admins";
+
     /**
      * Display a listing of the resource.
      */
@@ -43,7 +44,10 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        if (\request()->ajax()) {
+            $returnHtml = view($this->folderPath . 'create')->render();
+            return response()->json(['html' => $returnHtml]);
+        }
     }
 
     /**

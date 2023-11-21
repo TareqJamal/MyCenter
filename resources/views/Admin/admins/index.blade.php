@@ -3,17 +3,19 @@
     Admins
 @endsection
 @section('content')
+        <button type="button" id="add" class="btn btn-success mb-2">New Admin</button>
     <div class="card">
+
         <div class="card-datatable table-responsive pt-0">
             <table id="dataTable" class="datatables-basic table">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Image</th>
-                    <th>Action</th>
+                    <th>الاسم</th>
+                    <th>البريد الالكتروني</th>
+                    <th>رقم الهاتف</th>
+                    <th>الصورة</th>
+                    <th>الاجراء</th>
                 </tr>
                 </thead>
             </table>
@@ -42,6 +44,23 @@
                         searchable: false
                     },
                 ],
+                language: {
+                    {{--"sProcessing": "{{trans('dataTable.sProcessing')}}",--}}
+                    {{--"sLengthMenu": "{{trans('dataTable.sLengthMenu')}}",--}}
+                    "sZeroRecords": "لا يوجد بيانات",
+                    {{--"sInfo": "{{trans('dataTable.sInfo')}}",--}}
+                    {{--"sInfoEmpty": "{{trans('dataTable.sInfoEmpty')}}",--}}
+                    {{--"sInfoFiltered": "{{trans('dataTable.sInfoFiltered')}}",--}}
+                    {{--"sInfoPostFix": "",--}}
+                    "sSearch": "بحث",
+                    {{--"sUrl": "",--}}
+                    "oPaginate": {
+                        "sFirst": "{{trans('dataTable.sFirst')}}",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "{{trans('dataTable.sLast')}}"
+                    },
+                },
                 buttons: [
                     {
                         extend: 'excel',
@@ -88,16 +107,16 @@
         {{--        }--}}
         {{--    });--}}
         {{--});--}}
-        {{--$("#addAdmin").on('click', function () {--}}
-        {{--    $.ajax({--}}
-        {{--        url: "{{ route('admins.create')}}",--}}
-        {{--        success: function (response) {--}}
-        {{--            $('.modal-body').html(response.html);--}}
-        {{--            $('#Modal').modal('show');--}}
-        {{--            $('#ModalLabel').text('اضف مستخدم جديد');--}}
-        {{--            $('#Modal .modal-dialog').removeClass('modal-lg modal-xl modal-sm modal-dialog-centered').addClass('modal-lg')--}}
-        {{--        }--}}
-        {{--    });--}}
-        {{--});--}}
+        $("#add").on('click', function () {
+            $.ajax({
+                url: "{{ route('admins.create')}}",
+                success: function (response) {
+                    $('.body').html(response.html);
+                    $('#onboardHorizontalImageModal').modal('show');
+                    // $('.modal-title').text('اضف مستخدم جديد');
+                    // $('#basicModal .modal-dialog').removeClass('modal-lg modal-xl modal-sm modal-dialog-centered').addClass('modal-lg')
+                }
+            });
+        });
     </script>
 @endsection
