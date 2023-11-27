@@ -3,7 +3,7 @@
     Admins
 @endsection
 @section('content')
-        <button type="button" id="add" class="btn btn-success mb-2">New Admin</button>
+    <button type="button" id="add" class="btn btn-success mb-2">New Admin</button>
     <div class="card">
 
         <div class="card-datatable table-responsive pt-0">
@@ -12,9 +12,9 @@
                 <tr>
                     <th>#</th>
                     <th>الاسم</th>
+                    <th>الصورة</th>
                     <th>البريد الالكتروني</th>
                     <th>رقم الهاتف</th>
-                    <th>الصورة</th>
                     <th>الاجراء</th>
                 </tr>
                 </thead>
@@ -23,7 +23,16 @@
     </div>
 @endsection
 @section('js')
+    <script src="{{asset('Admin')}}/form-validator/jquery.form-validator.min.js"></script>
     <script>
+        $.validate({
+            modules: 'security, date',
+            lang: 'ar'
+
+        });
+    </script>
+    <script>
+
         var myTable;
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $(function () {
@@ -46,12 +55,12 @@
                 ],
                 language: {
                     {{--"sProcessing": "{{trans('dataTable.sProcessing')}}",--}}
-                    {{--"sLengthMenu": "{{trans('dataTable.sLengthMenu')}}",--}}
+                        {{--"sLengthMenu": "{{trans('dataTable.sLengthMenu')}}",--}}
                     "sZeroRecords": "لا يوجد بيانات",
                     {{--"sInfo": "{{trans('dataTable.sInfo')}}",--}}
-                    {{--"sInfoEmpty": "{{trans('dataTable.sInfoEmpty')}}",--}}
-                    {{--"sInfoFiltered": "{{trans('dataTable.sInfoFiltered')}}",--}}
-                    {{--"sInfoPostFix": "",--}}
+                        {{--"sInfoEmpty": "{{trans('dataTable.sInfoEmpty')}}",--}}
+                        {{--"sInfoFiltered": "{{trans('dataTable.sInfoFiltered')}}",--}}
+                        {{--"sInfoPostFix": "",--}}
                     "sSearch": "بحث",
                     {{--"sUrl": "",--}}
                     "oPaginate": {
@@ -65,56 +74,66 @@
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [1,3,4], // Column index which needs to export
+                            columns: [1, 3, 4], // Column index which needs to export
                         }
                     }
                 ],
             });
 
         });
-        {{--$('#dataTable').on('click','#btnDelete',function() {--}}
-        {{--    var adminId = $(this).data('id');--}}
-        {{--    var url = "{{route('admins.destroy','adminId')}}"--}}
-        {{--    url = url.replace('adminId',adminId);--}}
-        {{--    var csrfToken = $('meta[name="csrf-token"]').attr('content');--}}
-        {{--    $.ajax({--}}
-        {{--        url: url,--}}
-        {{--        method: 'Delete',--}}
-        {{--        headers: {--}}
-        {{--            'X-CSRF-TOKEN': csrfToken--}}
-        {{--        },--}}
-        {{--        success: function (response) {--}}
-        {{--            $('.modal-body').html(response.html);--}}
-        {{--            $('#Modal').modal('show');--}}
-        {{--            $('#ModalLabel').text('حذف المستخدم');--}}
-        {{--            $('#Modal .modal-dialog').removeClass('modal-lg modal-xl modal-sm modal-dialog-centered').addClass('modal-dialog-centered')--}}
-        {{--            // toastr.success(response.success)--}}
-        {{--            // myTable.ajax.reload();--}}
-        {{--        }--}}
-        {{--    });--}}
-        {{--});--}}
-        {{--$('#dataTable').on('click','#btnEdit',function() {--}}
-        {{--    var adminId = $(this).data('id');--}}
-        {{--    var url = "{{route('admins.edit',':adminId')}}"--}}
-        {{--    url = url.replace(':adminId',adminId);--}}
-        {{--    $.ajax({--}}
-        {{--        url: url,--}}
-        {{--        success: function (response) {--}}
-        {{--            $('.modal-body').html(response.html);--}}
-        {{--            $('#Modal').modal('show');--}}
-        {{--            $('#ModalLabel').text('تعديل المستخدم');--}}
-        {{--            $('#Modal .modal-dialog').removeClass('modal-lg modal-xl modal-sm modal-dialog-centered').addClass('modal-lg')--}}
-        {{--        }--}}
-        {{--    });--}}
-        {{--});--}}
+
+
+        $('#dataTable').on('click','#btnDelete',function() {
+            Swal.fire({
+                text: 'هل انت متاكد من حذف هذا المستخدم',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'نعم',
+                cancelButtonText: 'لا',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var adminId = $(this).data('id');
+                    var url = "{{route('admins.destroy','adminId')}}"
+                    url = url.replace('adminId',adminId);
+                    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        url: url,
+                        method: 'Delete',
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        success: function (response) {
+                            Swal.fire(
+                                'تم' ,
+                                response.success,
+                                'success'
+                            )
+                            myTable.ajax.reload();
+                        }
+                    });
+                }
+            })
+        });
+        $('#dataTable').on('click','#btnEdit',function() {
+            var adminId = $(this).data('id');
+            var url = "{{route('admins.edit',':adminId')}}"
+            url = url.replace(':adminId',adminId);
+            $.ajax({
+                url: url,
+                success: function (response) {
+                    $('.body').html(response.html);
+                    $('#onboardHorizontalImageModal').modal('show');
+                }
+            });
+        });
         $("#add").on('click', function () {
             $.ajax({
                 url: "{{ route('admins.create')}}",
                 success: function (response) {
                     $('.body').html(response.html);
                     $('#onboardHorizontalImageModal').modal('show');
-                    // $('.modal-title').text('اضف مستخدم جديد');
-                    // $('#basicModal .modal-dialog').removeClass('modal-lg modal-xl modal-sm modal-dialog-centered').addClass('modal-lg')
                 }
             });
         });

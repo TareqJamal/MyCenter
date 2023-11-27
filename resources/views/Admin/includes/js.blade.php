@@ -19,6 +19,12 @@
 <script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/js/main.js"></script>
 
 
-<!-- Page JS -->
-<script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/js/dashboards-analytics.js"></script>
-{{--<script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/js/tables-datatables-basic.js"></script>--}}
+{{--<!-- SweetAlert2 -->--}}
+{{--<script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/sweetalert2/sweetalert2.min.js"></script>--}}
+{{--<!-- Toastr -->--}}
+{{--<script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/toastr/toastr.min.js"></script>--}}
+{{--<!-- Bootstrap 4 -->--}}
+{{--<script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/bootstrap/js/bootstrap.bundle.min.js"></script>--}}
+{{--<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>--}}
+{{--<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

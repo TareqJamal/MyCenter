@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact " dir="ltr"
-      data-theme="theme-default" data-assets-path="{{asset('Admin')}}/vuexy-html-admin-template/assets/" data-template="vertical-menu-template">
+      data-theme="theme-default" data-assets-path="{{asset('Admin')}}/vuexy-html-admin-template/assets/"
+      data-template="vertical-menu-template">
 
 <head>
     <title>Dashboard | @yield('title')</title>
@@ -50,47 +51,51 @@
 
                 <div class="container-xxl flex-grow-1 container-p-y">
                     @yield('content')
-                    <div class="modal-onboarding modal fade animate__animated" id="onboardHorizontalImageModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-onboarding modal fade animate__animated" id="onboardHorizontalImageModal"
+                         tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
                             <div class="modal-content text-center">
                                 <div class="modal-header border-0">
-                                    <a class="text-muted close-label" href="javascript:void(0);" data-bs-dismiss="modal">Skip Intro</a>
+                                    <a class="text-muted close-label" href="javascript:void(0);"
+                                       data-bs-dismiss="modal">Skip Intro</a>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                     </button>
                                 </div>
                                 <div class="modal-body onboarding-horizontal p-0">
                                     <div class="onboarding-media">
-                                        <img src="{{asset('Admin/vuexy-html-admin-template')}}/assets/img/illustrations/boy-verify-email-light.png" alt="boy-verify-email-light" width="273" class="img-fluid" data-app-light-img="illustrations/boy-verify-email-light.png" data-app-dark-img="illustrations/boy-verify-email-dark.png">
+                                        <img
+                                            src="{{asset('Admin/vuexy-html-admin-template')}}/assets/img/illustrations/boy-verify-email-light.png"
+                                            alt="boy-verify-email-light" width="273" class="img-fluid"
+                                            data-app-light-img="illustrations/boy-verify-email-light.png"
+                                            data-app-dark-img="illustrations/boy-verify-email-dark.png">
                                     </div>
                                     <div class="onboarding-content mb-0 body">
 
+
                                     </div>
                                 </div>
-                                <div class="modal-footer border-0">
-                                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Submit</button>
-                                </div>
+
                             </div>
                         </div>
                     </div>
 
                     {{--                    <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">--}}
-{{--                        <div class="modal-dialog" role="document">--}}
-{{--                            <div class="modal-content">--}}
-{{--                                <div class="modal-header">--}}
-{{--                                    <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>--}}
-{{--                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
-{{--                                </div>--}}
-{{--                                <div class="modal-body">--}}
+                    {{--                        <div class="modal-dialog" role="document">--}}
+                    {{--                            <div class="modal-content">--}}
+                    {{--                                <div class="modal-header">--}}
+                    {{--                                    <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>--}}
+                    {{--                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+                    {{--                                </div>--}}
+                    {{--                                <div class="modal-body">--}}
 
-{{--                                </div>--}}
-{{--                                <div class="modal-footer">--}}
-{{--                                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>--}}
-{{--                                    <button type="button" class="btn btn-primary">Save</button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    {{--                                </div>--}}
+                    {{--                                <div class="modal-footer">--}}
+                    {{--                                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>--}}
+                    {{--                                    <button type="button" class="btn btn-primary">Save</button>--}}
+                    {{--                                </div>--}}
+                    {{--                            </div>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                 </div>
                 <!-- / Content -->
 

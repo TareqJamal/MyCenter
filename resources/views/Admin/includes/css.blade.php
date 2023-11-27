@@ -59,3 +59,13 @@
 {{--<link rel="stylesheet" href="{{asset('Admin')}}/vuexy-html-admin-template/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css">--}}
 <!-- Form Validation -->
 <link rel="stylesheet" href="{{asset('Admin')}}/vuexy-html-admin-template/assets/vendor/libs/@form-validation/umd/styles/index.min.css" />
+<link rel="stylesheet" href="{{asset('Admin')}}/vuexy-html-admin-template/assets/vendor/libs/sweetalert2/sweetalert2.css" />
+<link rel="stylesheet" href="{{asset('Admin')}}/vuexy-html-admin-template/assets/vendor/libs/toastr/toastr.css" />
+{{--<!-- Toastr -->--}}
+{{--<link rel="stylesheet" href="{{asset('Admin/vuexy-html-admin-template')}}/assets/toastr/toastr.min.css">--}}
+{{--<!-- SweetAlert2 -->--}}
+{{--<link rel="stylesheet" href={{asset('Admin/vuexy-html-admin-template')}}/assets/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">--}}
+<script src="http://demo.javatpoint.com/plugin/jquery.js"></script>
+<link rel="stylesheet" href="http://demo.javatpoint.com/plugin/bootstrap-3.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'
