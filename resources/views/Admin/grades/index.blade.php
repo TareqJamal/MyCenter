@@ -1,9 +1,9 @@
 @extends('Admin.layout.index')
 @section('title')
-    المستخدمين
+    الصفوف الدراسية
 @endsection
 @section('content')
-    <button type="button" id="add" class="btn btn-success mb-2">اضف مستخدم جديد</button>
+    <button type="button" id="add" class="btn btn-success mb-2">اضف صف جديد</button>
     <div class="card">
 
         <div class="card-datatable table-responsive pt-0">
@@ -12,10 +12,6 @@
                 <tr>
                     <th>#</th>
                     <th>الاسم</th>
-                    <th>الصورة</th>
-                    <th>البريد الالكتروني</th>
-                    <th>الحالة</th>
-                    <th>رقم الهاتف</th>
                     <th>الاجراء</th>
                 </tr>
                 </thead>
@@ -24,6 +20,7 @@
     </div>
 @endsection
 @section('js')
+
     <script src="{{asset('Admin')}}/form-validator/jquery.form-validator.min.js"></script>
     <script>
         $.validate({
@@ -33,21 +30,16 @@
         });
     </script>
     <script>
-
         var myTable;
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $(function () {
             myTable = $('#dataTable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('admins.index') }}",
+                ajax: "{{ route('grades.index') }}",
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'name', name: 'name'},
-                    {data: 'image', name: 'image'},
-                    {data: 'email', name: 'email'},
-                    {data: 'status', name: 'status'},
-                    {data: 'phone', name: 'phone'},
                     {
                         data: 'actions', name: 'actions',
                         orderable: false,
@@ -82,9 +74,9 @@
             });
 
         });
-        $('#dataTable').on('click','#btnDelete',function() {
+        $('#dataTable').on('click', '#btnDelete', function () {
             Swal.fire({
-                text: 'هل انت متاكد من حذف هذا المستخدم',
+                text: 'هل انت متاكد من حذف هذا الصف',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -93,9 +85,9 @@
                 cancelButtonText: 'لا',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    var adminId = $(this).data('id');
-                    var url = "{{route('admins.destroy','adminId')}}"
-                    url = url.replace('adminId',adminId);
+                    var gradeId = $(this).data('id');
+                    var url = "{{route('grades.destroy','gradeId')}}"
+                    url = url.replace('gradeId', gradeId);
                     var csrfToken = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
                         url: url,
@@ -105,7 +97,7 @@
                         },
                         success: function (response) {
                             Swal.fire(
-                                'تم' ,
+                                'تم',
                                 response.success,
                                 'success'
                             )
@@ -115,24 +107,26 @@
                 }
             })
         });
-        $('#dataTable').on('click','#btnEdit',function() {
-            var adminId = $(this).data('id');
-            var url = "{{route('admins.edit',':adminId')}}"
-            url = url.replace(':adminId',adminId);
+        $('#dataTable').on('click', '#btnEdit', function () {
+            var gradeId = $(this).data('id');
+            var url = "{{route('grades.edit',':gradeId')}}"
+            url = url.replace(':gradeId', gradeId);
             $.ajax({
                 url: url,
                 success: function (response) {
-                    $('.body').html(response.html);
-                    $('#onboardHorizontalImageModal').modal('show');
+                    $('.bodyModel').html(response.html);
+                    $('.modal-title').text('تعديل الصف ')
+                    $('#basicModal').modal('show');
                 }
             });
         });
         $("#add").on('click', function () {
             $.ajax({
-                url: "{{ route('admins.create')}}",
+                url: "{{ route('grades.create')}}",
                 success: function (response) {
-                    $('.body').html(response.html);
-                    $('#onboardHorizontalImageModal').modal('show');
+                    $('.bodyModel').html(response.html);
+                    $('.modal-title').text('اضف صف جديد')
+                    $('#basicModal').modal('show');
                 }
             });
         });

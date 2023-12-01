@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Traits\ImageTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class AdminController extends Controller
@@ -30,12 +31,24 @@ class AdminController extends Controller
                 ->editColumn('image', function ($row) {
                     return $this->getImage($row->image);
                 })
-                ->addColumn('actions', function ($row) {
-                    return
-                        '<button class="btn btn-warning" id="btnEdit" data-id=" ' . $row->id . ' ">تعديل</button>
-                         <button class="btn btn-danger" id="btnDelete" data-id=" ' . $row->id . ' ">حذف</button>';
+                ->addColumn('status', function ($row) {
+                    if (Auth::guard('admin')->user()->id == $row->id) {
+                        return '<p style="font-weight: bold; color: green">نشط الان</p>';
+                    } else {
+                        return '<p style="font-weight: bold; color: red">غير نشط  </p>';
+                    }
                 })
-                ->rawColumns(['image', 'actions'])
+                ->addColumn('actions', function ($row) {
+                    if (Auth::guard('admin')->user()->id == $row->id) {
+                        return '<button class="btn btn-warning" id="btnEdit" data-id=" ' . $row->id . ' ">تعديل</button>';
+                    } else {
+                        return
+                            '<button class="btn btn-warning" id="btnEdit" data-id=" ' . $row->id . ' ">تعديل</button>
+                         <button class="btn btn-danger" id="btnDelete" data-id=" ' . $row->id . ' ">حذف</button>';
+                    }
+
+                })
+                ->rawColumns(['image', 'actions','status'])
                 ->toJson();
         } else {
             return view($this->folderPath . 'index');
@@ -88,10 +101,10 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id ,AdminAction $action)
+    public function update(Request $request, string $id, AdminAction $action)
     {
         $data = $request->only($this->data);
-        $action->updateAdmin($id,$data);
+        $action->updateAdmin($id, $data);
         return response()->json(['success' => 'تم تعديل المستخدم بنجاح']);
     }
 

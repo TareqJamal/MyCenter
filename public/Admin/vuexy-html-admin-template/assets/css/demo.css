@@ -6,6 +6,9 @@
 * {
     font-family: 'Noto Kufi Arabic', sans-serif;
 }
+.form-label{
+    float: right;
+}
 .light-style .menu .app-brand.demo {
   height: 64px;
 }

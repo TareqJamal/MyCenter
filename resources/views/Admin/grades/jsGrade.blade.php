@@ -1,9 +1,8 @@
-
 <script>
+
     $(document).ready(function () {
         $('#formAdd').on('submit', function (e) {
-
-            var url = $(this).attr('data-action');
+            var url = $(this).attr('action');
             e.preventDefault();
             $.ajax({
                 url: url,
@@ -18,9 +17,10 @@
                     {
                         toastr.options = {
                             positionClass: 'toast-top-left',
+
                         };
-                        toastr.success('تم تسجيل المستخدم بنجاح')
-                        $('#onboardHorizontalImageModal').modal('hide');
+                        toastr.success(response.success)
+                        $('#basicModal').modal('hide');
                         myTable.ajax.reload();
                     }
                 },
@@ -60,10 +60,9 @@
                     {
                         toastr.options = {
                             positionClass: 'toast-top-left',
-
                         };
+                        $('#basicModal').modal('hide');
                         toastr.success(response.success)
-                        $('#onboardHorizontalImageModal').modal('hide');
                         myTable.ajax.reload();
                     }
                 },
@@ -82,33 +81,6 @@
             })
         })
 
-    });
-    $(document).ready(function () {
-        $('#formDelete').on('submit', function (e) {
-            var url = $(this).attr('data-action');
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            e.preventDefault();
-            $.ajax({
-                url: url,
-                method: "DELETE",
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken
-                },
-                data: new FormData(this),
-                dataType: 'JSON',
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function (response) {
-                    if(response.success)
-                    {
-                        toastr.success(response.success)
-                        $('#Modal').modal('hide');
-                        myTable.ajax.reload();
-                    }
-                },
-            })
-        })
     });
 </script>
 <script src="{{asset('')}}form-validator/jquery.form-validator.min.js"></script>

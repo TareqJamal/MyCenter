@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact " dir="ltr"
+<html lang="ar" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact " dir="rtl"
       data-theme="theme-default" data-assets-path="{{asset('Admin')}}/vuexy-html-admin-template/assets/"
       data-template="vertical-menu-template">
 
@@ -57,7 +57,7 @@
                             <div class="modal-content text-center">
                                 <div class="modal-header border-0">
                                     <a class="text-muted close-label" href="javascript:void(0);"
-                                       data-bs-dismiss="modal">Skip Intro</a>
+                                       data-bs-dismiss="modal">تخطي</a>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                     </button>
                                 </div>
@@ -71,31 +71,26 @@
                                     </div>
                                     <div class="onboarding-content mb-0 body">
 
-
                                     </div>
                                 </div>
 
                             </div>
                         </div>
                     </div>
+                    <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel1"></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body bodyModel">
 
-                    {{--                    <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">--}}
-                    {{--                        <div class="modal-dialog" role="document">--}}
-                    {{--                            <div class="modal-content">--}}
-                    {{--                                <div class="modal-header">--}}
-                    {{--                                    <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>--}}
-                    {{--                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
-                    {{--                                </div>--}}
-                    {{--                                <div class="modal-body">--}}
+                                </div>
 
-                    {{--                                </div>--}}
-                    {{--                                <div class="modal-footer">--}}
-                    {{--                                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>--}}
-                    {{--                                    <button type="button" class="btn btn-primary">Save</button>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-                    {{--                        </div>--}}
-                    {{--                    </div>--}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- / Content -->
 

@@ -12,10 +12,11 @@
         </div>
         <div class="col-sm-6">
             <div class="mb-3">
-                <label for="nameEx7" class="form-label">البريد الالكتروني</label>
-                <input class="form-control" name="email" placeholder="ادخل البريد الالكتروني" type="text" value=""
-                       data-validation="required">
+                <label for="nameEx7" class="form-label" style="float: right;">البريد الالكتروني</label>
+                <input class="form-control" name="email" placeholder="ادخل البريد الالكتروني" type="text" value="" data-validation="required">
             </div>
+
+
         </div>
         <div class="col-sm-6">
             <div class="mb-3">

@@ -4,6 +4,7 @@ namespace App\Http\Actions;
 
 use App\Models\Admin;
 use App\Traits\ImageTrait;
+use Illuminate\Support\Facades\Hash;
 
 class AdminAction extends MainAction
 {
@@ -19,8 +20,8 @@ class AdminAction extends MainAction
         if (isset($data['image'])) {
             $data['image'] = $this->uploadImage($data['image'], 'images');
         }
+        $data['password'] = Hash::make($data['password']);
         return $this->store($data);
-
     }
 
     public function updateAdmin($id, $data)
@@ -31,6 +32,5 @@ class AdminAction extends MainAction
         return $this->find($id)->update($data);
 
     }
-
 
 }
