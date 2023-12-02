@@ -1,3 +1,4 @@
+
 <script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/vendor/libs/jquery/jquery.js"></script>
 <script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/vendor/libs/popper/popper.js"></script>
 <script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/vendor/js/bootstrap.js"></script>
@@ -8,6 +9,7 @@
 <script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/vendor/libs/typeahead-js/typeahead.js"></script>
 <script src="{{asset('Admin/vuexy-html-admin-template')}}/assets/vendor/js/menu.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
 <!-- endbuild -->
 
 <!-- Vendors JS -->
@@ -28,3 +30,8 @@
 {{--<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>--}}
 {{--<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+</script>

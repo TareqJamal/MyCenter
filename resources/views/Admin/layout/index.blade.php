@@ -5,11 +5,11 @@
       data-template="vertical-menu-template">
 
 <head>
-    <title>Dashboard | @yield('title')</title>
+    <title>لوحة التحكم |  @yield('title')</title>
     @include('Admin.includes.meta')
     <!-- Canonical SEO -->
     @include('Admin.includes.css')
-
+    <link rel="stylesheet" href="{{asset('Admin')}}/vuexy-html-admin-template/assets/vendor/libs/select2/select2.css" />
 </head>
 
 <body>
