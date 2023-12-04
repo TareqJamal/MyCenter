@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Actions\ExamAction;
 use App\Http\Actions\GradeAction;
-use App\Http\Actions\SessionAction;
-use App\Http\Actions\StudentAction;
 use App\Http\Controllers\Controller;
+use App\Models\Exam;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
-class StudentController extends Controller
+class ExamController extends Controller
 {
-    public string $folderPath = "Admin.students.";
-    public array $data = ['name', 'phone', 'parent_phone', 'address', 'grade_id'];
-    public string $route = "students";
+    public string $folderPath = "Admin.exams.";
+    public array $data = ['title', 'degree', 'grade_id', 'date'];
+    public string $route = "exams";
 
     /**
      * Display a listing of the resource.
@@ -22,8 +22,8 @@ class StudentController extends Controller
     public function index()
     {
         if (\request()->ajax()) {
-            $students = Student::query()->get();
-            return DataTables::of($students)
+            $exams = Exam::query()->get();
+            return DataTables::of($exams)
                 ->addIndexColumn()
                 ->editColumn('grade_id', function ($row) {
                     return $row->grades->name ?? '';
@@ -46,13 +46,12 @@ class StudentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(GradeAction $gradeAction, SessionAction $sessionAction)
+    public function create(GradeAction $gradeAction,)
     {
         if (\request()->ajax()) {
             $returnHtml = view($this->folderPath . 'create')
                 ->with([
                     'grades' => $gradeAction->get(),
-                    'sessions' => $sessionAction->get(),
                 ])
                 ->render();
             return response()->json(['html' => $returnHtml]);
@@ -62,40 +61,31 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, StudentAction $action)
+    public function store(Request $request, ExamAction $action)
     {
         $data = $request->only($this->data);
-        $action->storeStudent($data, $request->sessionsIDS);
-        return response()->json(['success' => 'تم تسجيل الطالب بنجاح']);
-
+        $action->store($data);
+        return response()->json(['success' => 'تم تسجيل الامتحان بنجاح']);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id, StudentAction $action)
+    public function show(string $id)
     {
-        if (\request()->ajax()) {
-            $returnHtml = view($this->folderPath . 'show')
-                ->with([
-                    'obj' => $action->find($id),
-                ])->render();
-            return response()->json(['html' => $returnHtml]);
-        }
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id, GradeAction $gradeAction, SessionAction $sessionAction, StudentAction $studentAction)
+    public function edit(string $id, GradeAction $gradeAction, ExamAction $examAction)
     {
         if (\request()->ajax()) {
             $returnHtml = view($this->folderPath . 'edit')
                 ->with([
                     'grades' => $gradeAction->get(),
-                    'sessions' => $sessionAction->get(),
-                    'obj' => $studentAction->find($id),
-                    'studentSessionsIDS' => $studentAction->getSessions($id)
+                    'obj' => $examAction->find($id),
                 ])
                 ->render();
             return response()->json(['html' => $returnHtml]);
@@ -105,19 +95,19 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id, StudentAction $studentAction)
+    public function update(Request $request, string $id, ExamAction $examAction)
     {
         $data = $request->only($this->data);
-        $studentAction->updateStudent($id, $data, $request->sessionsIDS);
-        return response()->json(['success' => 'تم تعديل الطالب بنجاح']);
+        $examAction->find($id)->update($data);
+        return response()->json(['success' => 'تم تعديل الامتحان بنجاح']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id, StudentAction $studentAction)
+    public function destroy(string $id, ExamAction $examAction)
     {
-       $studentAction->delete($id);
-        return response()->json(['success' => 'تم حذف الطالب بنجاح']);
+        $examAction->delete(($id));
+        return response()->json(['success' => 'تم حذف الامتحان بنجاح']);
     }
 }

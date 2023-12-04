@@ -43,6 +43,12 @@
                 <div>الطلاب</div>
             </a>
         </li>
+        <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'exams.index' ? 'active' : ''}}">
+            <a href="{{route('exams.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-user"></i>
+                <div>الامتحانات</div>
+            </a>
+        </li>
         <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'old-students.index' ? 'active' : ''}}">
             <a href="{{route('old-students.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-user"></i>
