@@ -15,4 +15,9 @@ class Exam extends Model
     {
         return $this->belongsTo(Grade::class, 'grade_id');
     }
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'exams_students');
+    }
 }

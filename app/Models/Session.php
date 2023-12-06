@@ -25,4 +25,9 @@ class Session extends Model
     {
         return $this->hasMany(SessionDays::class, 'session_id');
     }
+
+    public function attedance()
+    {
+        return $this->belongsToMany(Student::class, 'attendance');
+    }
 }

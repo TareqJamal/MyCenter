@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\ExamController;
+use App\Http\Controllers\Admin\ExamStudentController;
 use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Admin\MoveStudentController;
 use App\Http\Controllers\Admin\OldStudentController;
@@ -17,6 +19,8 @@ Route::middleware(MyAuth::class)->group(function () {
     Route::resource('sessions', SessionController::class);
     Route::resource('students', StudentController::class);
     Route::resource('exams', ExamController::class);
+    Route::resource('exams-students', ExamStudentController::class);
+    Route::resource('attendances', AttendanceController::class);
     Route::resource('old-students', OldStudentController::class);
 });
 

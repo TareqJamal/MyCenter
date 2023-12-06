@@ -20,6 +20,16 @@ class Student extends Model
 
     public function sessions()
     {
-        return $this->belongsToMany(Session::class,'sessions_students');
+        return $this->belongsToMany(Session::class, 'sessions_students');
+    }
+
+    public function exams()
+    {
+        return $this->belongsToMany(Exam::class, 'exams_students');
+    }
+
+    public function attedance()
+    {
+        $this->belongsToMany(Session::class, 'attendance');
     }
 }

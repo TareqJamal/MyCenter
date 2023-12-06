@@ -33,7 +33,7 @@ class ExamController extends Controller
                         '
                         <button class="btn btn-warning" id="btnEdit" data-id=" ' . $row->id . ' ">تعديل</button>
                          <button class="btn btn-danger" id="btnDelete" data-id=" ' . $row->id . ' ">حذف</button>
-                         <button class="btn btn-dark" id="btnShow" data-id=" ' . $row->id . ' ">تفاصيل</button>
+                         <a href="' . route('exams-students.show', $row->id) . '"><button class="btn btn-dark"  data-id=" ' . $row->id . ' ">تسجيل الدرجات</button></a>
                          ';
                 })
                 ->rawColumns(['actions', 'grade_id'])

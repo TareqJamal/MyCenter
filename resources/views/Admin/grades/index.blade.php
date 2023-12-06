@@ -1,6 +1,6 @@
 @extends('Admin.layout.index')
 @section('title')
-    الصفوف الدراسية
+   الصفوف الدراسية
 @endsection
 @section('content')
     <button type="button" id="add" class="btn btn-success mb-2">اضف صف جديد</button>

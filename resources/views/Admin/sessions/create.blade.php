@@ -31,7 +31,7 @@
             <label for="nameEx7" class="form-label"> الايام</label>
                 <select id="nameEx7" name="days[]" class="select2 form-select" multiple data-placeholder="اختر اليوم">
                     @foreach($days as $day)
-                        <option value="{{$day}}">{{$day}}</option>
+                        <option value="{{$day['english']}}">{{$day['arabic']}}</option>
                     @endforeach
                 </select>
         </div>

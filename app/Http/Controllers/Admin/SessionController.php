@@ -15,7 +15,15 @@ class SessionController extends Controller
     public string $folderPath = "Admin.sessions.";
     public array $data = ['name', 'start_from', 'start_to', 'grade_id'];
     public string $route = "sessions";
-    public array $days = ['السبت', 'الاحد', 'الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعة'];
+    public array $days = [
+        ['arabic' => 'السبت', 'english' => 'Saturday'],
+        ['arabic' => 'الاحد', 'english' => 'Sunday'],
+        ['arabic' => 'الاثنين', 'english' => 'Monday'],
+        ['arabic' => 'الثلاثاء', 'english' => 'Tuesday'],
+        ['arabic' => 'الاربعاء', 'english' => 'Wednesday'],
+        ['arabic' => 'الخميس', 'english' => 'Thursday'],
+        ['arabic' => 'الجمعة', 'english' => 'Friday'],
+    ];
 
     /**
      * Display a listing of the resource.

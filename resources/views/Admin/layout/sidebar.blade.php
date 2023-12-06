@@ -49,6 +49,12 @@
                 <div>الامتحانات</div>
             </a>
         </li>
+        <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'attendances.index' ? 'active' : ''}}">
+            <a href="{{route('attendances.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-user"></i>
+                <div>الحصص اليومية</div>
+            </a>
+        </li>
         <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'old-students.index' ? 'active' : ''}}">
             <a href="{{route('old-students.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-user"></i>
