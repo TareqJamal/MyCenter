@@ -19,6 +19,12 @@
 
 
     <ul class="menu-inner py-1">
+        <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'dashboard.index' ? 'active' : ''}}">
+            <a href="{{route('dashboard.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-user"></i>
+                <div>الرئيسية</div>
+            </a>
+        </li>
         <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'admins.index' ? 'active' : ''}}">
             <a href="{{route('admins.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-user"></i>

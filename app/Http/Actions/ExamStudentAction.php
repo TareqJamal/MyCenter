@@ -13,13 +13,17 @@ class ExamStudentAction extends MainAction
 
     public function checkDegree($student_degree, $exam_degree): string
     {
-        if ($student_degree == $exam_degree) {
-            return '<p style="font-weight: bold; color: green">ممتاز</p>';
-        } elseif ($student_degree < $exam_degree && $student_degree >= ($exam_degree / 2)) {
-            return '<p style="font-weight: bold; color: orange">متوسط</p>';
-        } elseif ($student_degree <= ($exam_degree / 2)) {
-            return '<p style="font-weight: bold; color: red">ضعيف</p>';
-        } elseif ($student_degree == null) {
+        if(!is_null($student_degree))
+        {
+            if ($student_degree == $exam_degree) {
+                return '<p style="font-weight: bold; color: green">ممتاز</p>';
+            } elseif ($student_degree < $exam_degree && $student_degree >= ($exam_degree / 2)) {
+                return '<p style="font-weight: bold; color: orange">متوسط</p>';
+            } elseif ($student_degree <= ($exam_degree / 2)) {
+                return '<p style="font-weight: bold; color: red">ضعيف</p>';
+            }
+        }
+        else {
             return '<p style="font-weight: bold; color: red">لم يتم تسجيل الدرجة حتي الان</p>';
         }
     }

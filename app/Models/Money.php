@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Attendance extends Model
+class Money extends Model
 {
     use HasFactory;
 
-
-    protected $fillable = ['student_id', 'session_id', 'status'];
+    protected $fillable = ['student_id', 'month', 'is_paid'];
 }

@@ -119,9 +119,6 @@
 <!-- / Layout wrapper -->
 
 
-<div class="buy-now">
-    <a href="https://1.envato.market/vuexy_admin" target="_blank" class="btn btn-danger btn-buy-now">Buy Now</a>
-</div>
 
 
 <!-- Core JS -->

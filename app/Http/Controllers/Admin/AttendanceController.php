@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Actions\AttendanceAction;
 use App\Http\Controllers\Controller;
 use App\Models\Session;
 use App\Models\SessionDays;
@@ -13,6 +14,7 @@ use Yajra\DataTables\Facades\DataTables;
 class AttendanceController extends Controller
 {
     public string $folderPath = "Admin.attendance.";
+    public array $data = ['status', 'students_id', 'session_id'];
 
     /**
      * Display a listing of the resource.
@@ -35,9 +37,12 @@ class AttendanceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, AttendanceAction $action)
     {
-        dd($request->all());
+        $data = $request->only($this->data);
+        $action->storeAttendance($data , $request);
+        return response()->json(['success' => 'تم تسجيل الحضور بنجاح']);
+
     }
 
     /**
@@ -47,7 +52,7 @@ class AttendanceController extends Controller
     {
         if (\request()->ajax()) {
             $studentsIDs = StudentSessions::query()->where('session_id', $id)->pluck('student_id')->ToArray();
-            $students = Student::query()->whereIn('id',$studentsIDs)->get();
+            $students = Student::query()->whereIn('id', $studentsIDs)->get();
             return DataTables::of($students)
                 ->addIndexColumn()
                 ->addColumn('status', function ($row) {
@@ -55,10 +60,11 @@ class AttendanceController extends Controller
                         '
                         <div class="row mt-3">
                             <div class="col mb-4">
-                                <input name="status[' . $row->id . ']" class="form-check-input"  data-validation="required" required type="radio" value="1"> حضر
-                                <input  name="status[' . $row->id . ']" class="form-check-input"   data-validation="required" required type="radio" value="0"> لم يحضر
+                                <input name="status[' . $row->id . ']" class="form-check-input" ' . (isset($row->attendace) && $row->attendace->status == 1 ? "checked" : "") . '  type="radio" value="1"> حضر
+                                <input  name="status[' . $row->id . ']" class="form-check-input" ' . (isset($row->attendace) && $row->attendace->status == 0 ? "checked" : "") . '   type="radio" value="0"> لم يحضر
                             </div>
                                 <input type="hidden"  name="students_id[' . $row->id . ']" value="' . $row->id . '">
+                                <input type="hidden"  name="studentsAttendance_id[' . $row->id . ']" value="' . @$row->attendace->id  . '">
                         </div>
                          ';
                 })

@@ -9,7 +9,8 @@
                 <img src="{{asset('Admin')}}/teacher.webp" alt="" width="250px" height="250px">
             </div>
             @forelse($sessions as $session)
-                <div class="col-12">
+
+                <div class="col-12 mt-3">
                     <h4>{{$session->name}} - {{$session->grades->name}}</h4>
                     <div class="d-flex justify-content-evenly">
                         <p>تبدء في الساعة</p>
@@ -20,15 +21,18 @@
                         <p style="font-weight: bold; color: red">{{ \Carbon\Carbon::parse($session->start_to)->format('H:i') }}</p>
                     </div>
                     @if( now()->addHours(2)->format('H:i:s') >= $session->start_from && now()->addHours(2)->format('H:i:s') <= $session->start_to )
-                        <h4>الحالة -
+                        <h4>
                             <span style="font-weight: bold; color: red">(جارية الان)</span>
                         </h4>
+                        <a href="{{route('attendances.show',$session->id)}}" class="btn btn-success">تسجيل الحضور</a>
+                        <a href="{{route('money.show',$session->id)}}" class="btn btn-danger"> دفع فلوس الشهر</a>
                     @elseif(now()->addHours(2)->format('H:i:s') >= $session->start_to)
-                        <h4>الحالة - <span style="font-weight: bold; color: green">(انتهت)</span></h4>
+                        <h4><span style="font-weight: bold; color: green">(انتهت)</span></h4>
+                        <a href="{{route('money.show',$session->id)}}" class="btn btn-danger">دفع فلوس الشهر</a>
                     @elseif(now()->addHours(2)->format('H:i:s') < $session->start_from)
-                        <h4>الحالة - <span style="font-weight: bold; color: orange">(لم تبدء حتي الان)</span></h4>
+                        <h4><span style="font-weight: bold; color: orange">(لم تبدء حتي الان)</span></h4>
+                        <a href="{{route('money.show',$session->id)}}" class="btn btn-danger">دفع فلوس الشهر</a>
                     @endif
-                    <a href="{{route('attendances.show',$session->id)}}" class="btn btn-success">تسجيل الحضور</a>
                 </div>
             @empty
                 <div class="text-center">
