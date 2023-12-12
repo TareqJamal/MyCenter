@@ -121,7 +121,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-primary d-grid w-100" type="submit">تسجيل الدخول</button>
+                            <button class="btn btn-primary d-grid w-100" id="btnlogin" type="submit">تسجيل الدخول</button>
                         </div>
                     </form>
                 </div>
@@ -133,9 +133,7 @@
 
 <!-- / Content -->
 
-<div class="buy-now">
-    <a href="https://1.envato.market/vuexy_admin" target="_blank" class="btn btn-danger btn-buy-now">Buy Now</a>
-</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -194,6 +192,9 @@
                 contentType: false,
                 cache: false,
                 processData: false,
+                beforeSend: function () {
+                    document.getElementById("btnlogin").innerHTML = 'جاري تسجيل الدخول';
+                },
                 success: function (response) {
                     if (response.success) {
                         toastr.options = {

@@ -30,10 +30,12 @@ class ExamController extends Controller
                 })
                 ->addColumn('actions', function ($row) {
                     return
-                        '
+                        ' <a href="' . route('exams-students.show', $row->id) . '">
+                         <button class="btn btn-dark"  data-id=" ' . $row->id . '">تسجيل الدرجات</button></a>
+                         <button class="btn btn-primary" id="btnReport" data-id=" ' . $row->id . ' ">التقرير</button>
                         <button class="btn btn-warning" id="btnEdit" data-id=" ' . $row->id . ' ">تعديل</button>
                          <button class="btn btn-danger" id="btnDelete" data-id=" ' . $row->id . ' ">حذف</button>
-                         <a href="' . route('exams-students.show', $row->id) . '"><button class="btn btn-dark"  data-id=" ' . $row->id . ' ">تسجيل الدرجات</button></a>
+
                          ';
                 })
                 ->rawColumns(['actions', 'grade_id'])

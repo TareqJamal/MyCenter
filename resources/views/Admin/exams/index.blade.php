@@ -126,6 +126,19 @@
                 }
             });
         });
+        $('#dataTable').on('click', '#btnReport', function () {
+            var examId = $(this).data('id');
+            var url = "{{route('exams-reports.show',':examId')}}"
+            url = url.replace(':examId', examId);
+            $.ajax({
+                url: url,
+                success: function (response) {
+                    $('.bodyModel').html(response.html);
+                    $('.modal-title').text('تقرير الامتحان')
+                    $('#basicModal').modal('show');
+                }
+            });
+        });
         $("#add").on('click', function () {
             $.ajax({
                 url: "{{ route('exams.create')}}",

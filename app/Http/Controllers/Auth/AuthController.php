@@ -16,7 +16,7 @@ class AuthController extends Controller
         $result = $action->checkLogin($credentials);
         if ($result) {
             return response()->json([
-                'redirect' => route('admins.index'),
+                'redirect' => route('dashboard.index'),
                 'success' => 'تم تسجيل الدخول بنجاح'
             ]);
         } else {

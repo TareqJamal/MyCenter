@@ -16,6 +16,7 @@
                     <th>تبدء في</th>
                     <th>تنتهي في</th>
                     <th>الصف الدراسي</th>
+                    <th>عدد الطلاب</th>
                     <th>الاجراء</th>
                 </tr>
                 </thead>
@@ -47,6 +48,7 @@
                     {data: 'start_from', name: 'start_from'},
                     {data: 'start_to', name: 'start_to'},
                     {data: 'grade_id', name: 'grade_id'},
+                    {data: 'studentNumber', name: 'studentNumber'},
                     {
                         data: 'actions', name: 'actions',
                         orderable: false,

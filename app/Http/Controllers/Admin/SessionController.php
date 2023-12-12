@@ -37,12 +37,15 @@ class SessionController extends Controller
                 ->editColumn('grade_id', function ($row) {
                     return $row->grades->name ?? '';
                 })
+                ->editColumn('studentNumber', function ($row) {
+                    return $row->students->count() ?? '';
+                })
                 ->addColumn('actions', function ($row) {
                     return
                         '<button class="btn btn-warning" id="btnEdit" data-id=" ' . $row->id . ' ">تعديل</button>
                          <button class="btn btn-danger" id="btnDelete" data-id=" ' . $row->id . ' ">حذف</button>';
                 })
-                ->rawColumns(['actions', 'grade_id'])
+                ->rawColumns(['actions', 'grade_id','studentNumber'])
                 ->toJson();
         } else {
             return view($this->folderPath . 'index');
