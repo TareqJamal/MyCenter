@@ -103,5 +103,24 @@
         modules: 'security, date',
         lang: 'ar'
     });
+    $.formUtils.addValidator({
+        name: 'phoneNumber',
+        validatorFunction: function (value, $el, config, language, $form) {
+            // إزالة أي مسافات فارغة من الرقم
+            var cleanedValue = value.replace(/\s/g, '');
+
+            // التحقق من أن القيمة غير فارغة وتحتوي على 11 رقمًا وتبدأ بالصفر
+            if (cleanedValue.length === 11 && cleanedValue[0] === '0' && !isNaN(cleanedValue)) {
+                return true; // الرقم صحيح
+            }
+
+            return false; // الرقم غير صحيح
+        },
+        errorMessage: 'ادخل رقم هاتف صحيح، يجب أن يكون مكونًا من 11 رقم ويبدأ بالصفر'
+    });
+
+
+    // Initiate form validation
+    $.validate();
 </script>
 

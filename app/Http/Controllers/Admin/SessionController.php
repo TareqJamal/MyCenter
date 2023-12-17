@@ -31,7 +31,7 @@ class SessionController extends Controller
     public function index()
     {
         if (\request()->ajax()) {
-            $sessions = Session::all();
+            $sessions = Session::query()->get();
             return DataTables::of($sessions)
                 ->addIndexColumn()
                 ->editColumn('grade_id', function ($row) {

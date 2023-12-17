@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light-style layout-wide  customizer-hide" dir="ltr" data-theme="theme-default"
+<html lang="ar" class="light-style layout-wide  customizer-hide" dir="rtl" data-theme="theme-default"
       data-assets-path="{{asset('Admin')}}/vuexy-html-admin-template/assets/" data-template="vertical-menu-template">
 
 <head>
@@ -76,6 +76,8 @@
     <link rel="stylesheet" href="http://demo.javatpoint.com/plugin/bootstrap-3.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <link rel="stylesheet" href="{{asset('/Admin/vuexy-html-admin-template/assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
+    <link rel="stylesheet" href="{{asset('/Admin/vuexy-html-admin-template/assets/vendor/libs/toastr/toastr.css')}}" />
 </head>
 
 <body>

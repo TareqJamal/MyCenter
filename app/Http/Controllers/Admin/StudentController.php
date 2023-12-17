@@ -6,6 +6,7 @@ use App\Http\Actions\GradeAction;
 use App\Http\Actions\SessionAction;
 use App\Http\Actions\StudentAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\students\StoreStudentRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -62,7 +63,7 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, StudentAction $action)
+    public function store(StoreStudentRequest $request, StudentAction $action)
     {
         $data = $request->only($this->data);
         $action->storeStudent($data, $request->sessionsIDS);
