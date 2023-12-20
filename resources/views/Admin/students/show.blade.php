@@ -50,34 +50,15 @@
 <table class="table">
     <tbody>
     <tr>
-        <th scope="row" style="font-weight: bold;color: green">الحصة</th>
-        <th scope="row" style="font-weight: bold;color: green">تبدء في</th>
-        <th scope="row" style="font-weight: bold;color: green">تنتهي في</th>
-        <th scope="row" style="font-weight: bold;color: green"> الايام</th>
+        <th scope="row" style="font-weight: bold;color: green">الامتحان</th>
+        <th scope="row" style="font-weight: bold;color: green"> درجة الامتحان</th>
+        <th scope="row" style="font-weight: bold;color: green"> درجة الطالب</th>
     </tr>
-    @foreach($obj->sessions as $session)
+    @foreach($obj->monthlyExam as $exam)
         <tr>
-            <td>{{ $session->name }}</td>
-            <td>{{ $session->start_from }}</td>
-            <td>{{ $session->start_to }}</td>
-            @foreach($session->days as $day)
-                @if( $day->day == 'Saturday')
-                    <td>السبت</td>
-                @elseif($day->day == 'Sunday')
-                    <td>الاحد</td>
-                @elseif($day->day == 'Monday')
-                    <td>الاثنين</td>
-                @elseif($day->day == 'Tuesday')
-                    <td>الثلاثاء</td>
-                @elseif($day->day == 'Wednesday')
-                    <td>الاربعاء</td>
-                @elseif($day->day == 'Thursday')
-                    <td>الخميس</td>
-                @elseif($day->day == 'Friday')
-                    <td>الجمعة</td>
-                @endif
-
-            @endforeach
+            <td>{{ @$exam->exam->title }}</td>
+            <td>{{ @$exam->exam->degree }}</td>
+            <td>{{ @$exam->student_degree }}</td>
         </tr>
     @endforeach
     </tbody>

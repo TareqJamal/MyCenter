@@ -172,12 +172,12 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="card-title mb-0">
-                        <h4 class="mb-0">الطلاب اللذي دفعوا فلوس الشهر الحالي</h4>
+                        <h4 class="mb-0">الطلاب الذي  لم يدفعوا فلوس الشهر الحالي</h4>
                     </div>
                 </div>
                 <div class="card-body">
                     <ul class="list-unstyled mb-0">
-                        @forelse($paidStudents as $PAStudent)
+                        @forelse($notPaidStudents as $PAStudent)
                             <li class="mb-3 pb-1">
                                 <div class="d-flex align-items-start">
                                     <div class="badge bg-label-secondary p-2 me-3 rounded"><i

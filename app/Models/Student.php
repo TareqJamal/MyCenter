@@ -28,6 +28,11 @@ class Student extends Model
         return $this->belongsToMany(Exam::class, 'exams_students');
     }
 
+    public function monthlyExam()
+    {
+        return $this->hasMany(ExamsStudents::class, 'student_id')->whereMonth('created_at', '=', now()->month);
+    }
+
     public function attendace()
     {
         return $this->hasOne(Attendance::class, 'student_id')->whereDate('created_at', date('Y-m-d'));

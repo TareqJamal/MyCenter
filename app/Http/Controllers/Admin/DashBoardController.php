@@ -23,18 +23,18 @@ class DashBoardController extends Controller
             ->where('attendances.status', '=', 0)->whereMonth('attendances.created_at', '=', now()->month)
             ->groupBy('students.id', 'students.name', 'students.grade_id')
             ->orderByDesc('total_absences')
-            ->limit(10)
+            ->limit(5)
             ->get();
         $attendingStudents = Student::select('name', 'grade_id', DB::raw('COUNT(attendances.id) as total_absences'))
             ->leftJoin('attendances', 'students.id', '=', 'attendances.student_id')
             ->where('attendances.status', '=', 1)->whereMonth('attendances.created_at', '=', now()->month)
             ->groupBy('students.id', 'students.name', 'students.grade_id')
             ->orderByDesc('total_absences')
-            ->limit(10)
+            ->limit(5)
             ->get();
-        $paidStudentsIDs = Money::query()->where('is_paid', '=', 1)->whereMonth('created_at', '=', now()->month)->pluck('student_id')->ToArray();
-        $paidStudents = Student::whereIn('id', $paidStudentsIDs)->get();
-        return view('Admin.dashboard.index', compact('data', 'absentStudents', 'attendingStudents','paidStudents'));
+        $notPaidStudentsIDs = Money::query()->where('is_paid', '=', 0)->whereMonth('created_at', '=', now()->month)->pluck('student_id')->ToArray();
+        $notPaidStudents = Student::whereIn('id', $notPaidStudentsIDs)->get();
+        return view('Admin.dashboard.index', compact('data', 'absentStudents', 'attendingStudents','notPaidStudents'));
     }
 
     /**
