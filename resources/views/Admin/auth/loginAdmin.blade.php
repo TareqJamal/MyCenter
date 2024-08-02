@@ -97,14 +97,14 @@
                 <div class="card-body">
                     <!-- Logo -->
                     <div class="app-brand justify-content-center mb-4 mt-2">
-                        <a href="{{route('loginForm')}}" class="app-brand-link gap-2">
+                        <a href="{{route('loginFormAdmin')}}" class="app-brand-link gap-2">
                             <span class="app-brand-text demo text-body fw-bold ms-1">مدرسي</span>
                             <img src="{{asset('Admin')}}/vuexy-html-admin-template/assets/img/teacher.webp" alt=""
                                  width="150px" height="150px">
                         </a>
                     </div>
                     <!-- /Logo -->
-                    <form id="formLogin" class="mb-3" action="{{route('login')}}" method="POST">
+                    <form id="formLogin" class="mb-3" action="{{route('loginAdmin')}}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">البريد الالكتروني</label>

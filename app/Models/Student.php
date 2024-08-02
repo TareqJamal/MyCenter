@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Student extends Model
+class Student extends Authenticatable
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['name', 'phone', 'parent_phone', 'address', 'grade_id'];
+    protected $fillable = ['name', 'phone', 'email', 'password', 'parent_phone', 'address', 'grade_id'];
 
     public function grades()
     {

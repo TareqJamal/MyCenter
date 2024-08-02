@@ -2,13 +2,13 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AttendanceController;
+use App\Http\Controllers\Admin\ChapterController;
 use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\Admin\ExamController;
 use App\Http\Controllers\Admin\ExamReportController;
 use App\Http\Controllers\Admin\ExamStudentController;
 use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Admin\MoneyController;
-use App\Http\Controllers\Admin\MoveStudentController;
 use App\Http\Controllers\Admin\OldStudentController;
 use App\Http\Controllers\Admin\SessionController;
 use App\Http\Controllers\Admin\StudentController;
@@ -28,10 +28,13 @@ Route::middleware(MyAuth::class)->group(function () {
     Route::resource('attendances', AttendanceController::class);
     Route::resource('money', MoneyController::class);
     Route::resource('old-students', OldStudentController::class);
+    Route::resource('chapters', ChapterController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post('/login', 'checkLogin')->name('login');
-    Route::get('/logout', 'logout')->name('logout');
-    Route::get('/', 'getFormLogin')->name('loginForm');
+    Route::post('/login/check/admin', 'checkLoginAdmin')->name('loginAdmin');
+    Route::post('/login/check/student', 'checkLoginStudent')->name('loginStudent');
+    Route::get('/logout', 'logoutAdmin')->name('logout');
+    Route::get('/login/admin', 'getFormLoginAdmin')->name('loginFormAdmin');
+    Route::get('/login/student', 'getFormLoginStudent')->name('loginFormStudent');
 });
