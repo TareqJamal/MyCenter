@@ -11,7 +11,7 @@ class AuthAction
     public function checkLoginAdmin($credentials)
     {
         if (Auth::guard('admin')->attempt($credentials)) {
-            Session::put('status', true);
+            Session::put('status_admin', true);
             return true;
         } else {
             return false;
@@ -20,7 +20,7 @@ class AuthAction
     public function checkLoginStudent($credentials)
     {
         if (Auth::guard('student')->attempt($credentials)) {
-            Session::put('status', true);
+            Session::put('status_student', true);
             return true;
         } else {
             return false;

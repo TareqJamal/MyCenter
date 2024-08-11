@@ -9,4 +9,9 @@ class MaterialPdf extends Model
 {
     use HasFactory;
     protected $fillable = ['title','file','chapter_id'];
+    public function chapters()
+    {
+        return $this->belongsTo(Chapter::class,'chapter_id');
+
+    }
 }

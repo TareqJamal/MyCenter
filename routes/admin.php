@@ -8,12 +8,15 @@ use App\Http\Controllers\Admin\ExamController;
 use App\Http\Controllers\Admin\ExamReportController;
 use App\Http\Controllers\Admin\ExamStudentController;
 use App\Http\Controllers\Admin\GradeController;
+use App\Http\Controllers\Admin\MatreialPdfController;
+use App\Http\Controllers\Admin\MatreialVideoController;
 use App\Http\Controllers\Admin\MoneyController;
 use App\Http\Controllers\Admin\OldStudentController;
 use App\Http\Controllers\Admin\SessionController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Middleware\MyAuth;
+use App\Http\Middleware\StudentAuth;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(MyAuth::class)->group(function () {
@@ -29,6 +32,11 @@ Route::middleware(MyAuth::class)->group(function () {
     Route::resource('money', MoneyController::class);
     Route::resource('old-students', OldStudentController::class);
     Route::resource('chapters', ChapterController::class);
+    Route::resource('material-pdfs', MatreialPdfController::class);
+    Route::resource('material-videos', MatreialVideoController::class);
+});
+Route::middleware(StudentAuth::class)->group(function (){
+    Route::resource('student_dashboard', DashBoardController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

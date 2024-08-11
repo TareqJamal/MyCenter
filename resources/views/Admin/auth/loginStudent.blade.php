@@ -95,10 +95,12 @@
             <!-- Login -->
             <div class="card">
                 <div class="card-body">
+                    <div class="app-brand justify-content-center mb-4 mt-2">
+                        <h3>اهلا بك في منصة <span style="font-weight: bold ; color: #4a488c"> مدرسي</span> </h3>
+                    </div>
                     <!-- Logo -->
                     <div class="app-brand justify-content-center mb-4 mt-2">
                         <a href="{{route('loginFormStudent')}}" class="app-brand-link gap-2">
-                            <span class="app-brand-text demo text-body fw-bold ms-1">مدرسي</span>
                             <img src="{{asset('Admin')}}/vuexy-html-admin-template/assets/img/teacher.webp" alt=""
                                  width="150px" height="150px">
                         </a>
@@ -107,9 +109,9 @@
                     <form id="formLogin" class="mb-3" action="{{route('loginStudent')}}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="email" class="form-label">البريد الالكتروني</label>
-                            <input type="text" class="form-control" id="email" name="email"
-                                   placeholder="اكتب بريدك الالكتروني" autofocus data-validation="required">
+                            <label for="email" class="form-label">رقم الهاتف </label>
+                            <input type="text" class="form-control" id="phone" name="phone"
+                                   placeholder="اكتب رقم الهاتف" autofocus data-validation="required">
                         </div>
                         <div class="mb-3 form-password-toggle">
                             <div class="d-flex justify-content-between">

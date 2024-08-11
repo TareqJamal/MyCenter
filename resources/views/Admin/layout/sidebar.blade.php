@@ -19,48 +19,64 @@
 
 
     <ul class="menu-inner py-1">
-        <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'dashboard.index' ? 'active' : ''}}">
-            <a href="{{route('dashboard.index')}}" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-user"></i>
-                <div>الرئيسية</div>
-            </a>
-        </li>
-        <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'admins.index' ? 'active' : ''}}">
-            <a href="{{route('admins.index')}}" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-user"></i>
-                <div>المستخدمين</div>
-            </a>
-        </li>
-        <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'grades.index' ? 'active' : ''}}">
-            <a href="{{route('grades.index')}}" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-messages"></i>
-                <div>الصفوف الدراسية</div>
-            </a>
-        </li>
-        <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'sessions.index' ? 'active' : ''}}">
-            <a href="{{route('sessions.index')}}" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-calendar"></i>
-                <div>الحصص</div>
-            </a>
-        </li>
-        <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'chapters.index' ? 'active' : ''}}">
-            <a href="{{route('chapters.index')}}" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-book"></i>
-                <div>الفصول الدراسية</div>
-            </a>
-        </li>
-        <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'students.index' ? 'active' : ''}}">
-            <a href="{{route('students.index')}}" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-user"></i>
-                <div>الطلاب</div>
-            </a>
-        </li>
-        <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'exams.index' ? 'active' : ''}}">
-            <a href="{{route('exams.index')}}" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-user"></i>
-                <div>الامتحانات</div>
-            </a>
-        </li>
+{{--        @if(\Illuminate\Support\Facades\Auth::guard('admin')->check())--}}
+            <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'dashboard.index' ? 'active' : ''}}">
+                <a href="{{route('dashboard.index')}}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-user"></i>
+                    <div>الرئيسية</div>
+                </a>
+            </li>
+            <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'admins.index' ? 'active' : ''}}">
+                <a href="{{route('admins.index')}}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-user"></i>
+                    <div>المستخدمين</div>
+                </a>
+            </li>
+            <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'grades.index' ? 'active' : ''}}">
+                <a href="{{route('grades.index')}}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-messages"></i>
+                    <div>الصفوف الدراسية</div>
+                </a>
+            </li>
+            <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'sessions.index' ? 'active' : ''}}">
+                <a href="{{route('sessions.index')}}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-calendar"></i>
+                    <div>الحصص</div>
+                </a>
+            </li>
+            <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'chapters.index' ? 'active' : ''}}">
+                <a href="{{route('chapters.index')}}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-book"></i>
+                    <div>الفصول الدراسية</div>
+                </a>
+            </li>
+            <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'material-pdfs.index' ? 'active' : ''}}">
+                <a href="{{route('material-pdfs.index')}}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-file"></i>
+                    <div>الملفات الدراسية</div>
+                </a>
+            </li>
+            <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'material-videos.index' ? 'active' : ''}}">
+                <a href="{{route('material-videos.index')}}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-video"></i>
+                    <div>الفيديوهات الدراسية</div>
+                </a>
+            </li>
+
+            <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'students.index' ? 'active' : ''}}">
+                <a href="{{route('students.index')}}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-user"></i>
+                    <div>الطلاب</div>
+                </a>
+            </li>
+
+            <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'exams.index' ? 'active' : ''}}">
+                <a href="{{route('exams.index')}}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-user"></i>
+                    <div>الامتحانات</div>
+                </a>
+            </li>
+{{--        @endif--}}
         <li class="menu-item {{\Illuminate\Support\Facades\Route::currentRouteName() == 'attendances.index' ? 'active' : ''}}">
             <a href="{{route('attendances.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-user"></i>

@@ -14,7 +14,7 @@ use Yajra\DataTables\Facades\DataTables;
 class StudentController extends Controller
 {
     public string $folderPath = "Admin.students.";
-    public array $data = ['name', 'phone', 'parent_phone', 'address', 'grade_id'];
+    public array $data = ['name', 'phone', 'password', 'parent_phone', 'address', 'grade_id'];
     public string $route = "students";
 
     /**
@@ -118,7 +118,7 @@ class StudentController extends Controller
      */
     public function destroy(string $id, StudentAction $studentAction)
     {
-       $studentAction->delete($id);
+        $studentAction->delete($id);
         return response()->json(['success' => 'تم حذف الطالب بنجاح']);
     }
 }

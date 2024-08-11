@@ -4,6 +4,7 @@ namespace App\Http\Actions;
 
 use App\Models\Student;
 use App\Models\StudentSessions;
+use Illuminate\Support\Facades\Hash;
 
 class StudentAction extends MainAction
 {
@@ -14,6 +15,7 @@ class StudentAction extends MainAction
 
     public function storeStudent($data, $sessionsIDS)
     {
+        $data['password'] = Hash::make($data['phone']);
         $student = $this->store($data);
         foreach ($sessionsIDS as $sessionID) {
             StudentSessions::create([
@@ -22,10 +24,11 @@ class StudentAction extends MainAction
             ]);
         }
     }
-    public function updateStudent($id , $data , $sessionsIDS)
+
+    public function updateStudent($id, $data, $sessionsIDS)
     {
         $this->find($id)->update($data);
-        StudentSessions::where('student_id',$id)->delete();
+        StudentSessions::where('student_id', $id)->delete();
         foreach ($sessionsIDS as $sessionID) {
             StudentSessions::create([
                 'student_id' => $id,

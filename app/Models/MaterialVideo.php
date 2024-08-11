@@ -9,4 +9,8 @@ class MaterialVideo extends Model
 {
     use HasFactory;
     protected $fillable = ['title','video','chapter_id'];
+    public function chapters ()
+    {
+        return $this->belongsTo(Chapter::class,'chapter_id');
+    }
 }
