@@ -25,6 +25,7 @@ class AuthController extends Controller
             ]);
         }
     }
+
     public function checkLoginStudent(Request $request, AuthAction $action)
     {
         $credentials = $request->only(['phone', 'password']);
@@ -49,6 +50,7 @@ class AuthController extends Controller
             return view('Admin.auth.loginAdmin');
         }
     }
+
     public function getFormLoginStudent()
     {
         if (Auth::guard('student')->check() && Session::has('status_student')) {
@@ -61,6 +63,16 @@ class AuthController extends Controller
     public function logoutAdmin()
     {
         Session::flush();
-        return redirect()->route('loginFormAdmin');
+        if (Auth::guard('admin')->check()) {
+            Session::flush();
+            Auth::logout();
+            return redirect()->route('loginFormAdmin');
+        }
+        else{
+            Session::flush();
+            Auth::logout();
+            return redirect()->route('loginFormStudent');
+        }
+
     }
 }

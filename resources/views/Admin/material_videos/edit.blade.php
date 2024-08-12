@@ -7,7 +7,10 @@
             <input class="form-control" name="title" placeholder="ادخل اسم الملف" type="text" value="{{$obj->title}}"
                    data-validation="required">
         </div>
-
+        <div class="col-sm-12">
+            <label for="nameEx7" class="form-label"> صورة الفيديو </label>
+            <input class="form-control" name="image" type="file">
+        </div>
         <div class="col-sm-12">
             <label for="nameEx7" class="form-label"> الفيديو </label>
             <input class="form-control" name="video" type="file">

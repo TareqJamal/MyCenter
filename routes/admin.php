@@ -15,6 +15,11 @@ use App\Http\Controllers\Admin\OldStudentController;
 use App\Http\Controllers\Admin\SessionController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Student\StudentMatreialPdfController;
+use App\Http\Controllers\Student\StudentMatreialVideoController;
+use App\Http\Controllers\Student\StudentMatreialVideoDetailsController;
+use App\Http\Controllers\Student\StudentSettingsController;
+use App\Http\Controllers\StudentDashboardController;
 use App\Http\Middleware\MyAuth;
 use App\Http\Middleware\StudentAuth;
 use Illuminate\Support\Facades\Route;
@@ -36,7 +41,12 @@ Route::middleware(MyAuth::class)->group(function () {
     Route::resource('material-videos', MatreialVideoController::class);
 });
 Route::middleware(StudentAuth::class)->group(function (){
-    Route::resource('student_dashboard', DashBoardController::class);
+    Route::resource('student_dashboard', StudentDashboardController::class);
+    Route::resource('students_material-pdfs', StudentMatreialPdfController::class);
+    Route::resource('students_material-videos', StudentMatreialVideoController::class);
+    Route::resource('students_material-videos-details', StudentMatreialVideoDetailsController::class);
+    Route::post('student/settings', [StudentSettingsController::class ,'change_password'])->name('change_password');
+    Route::get('student/settings/form', [StudentSettingsController::class ,'get_settings_form'])->name('get_settings_form');
 });
 
 Route::controller(AuthController::class)->group(function () {

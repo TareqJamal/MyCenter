@@ -7,13 +7,17 @@ use App\Http\Actions\MaterialVideoAction;
 use App\Http\Controllers\Controller;
 use App\Models\MaterialPdf;
 use App\Models\MaterialVideo;
+use App\Traits\ImageTrait;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class MatreialVideoController extends Controller
 {
+    use ImageTrait;
+
     public string $folderPath = "Admin.material_videos.";
-    public array $data = ['title', 'video', 'chapter_id'];
+    public array $data = ['title', 'image', 'video', 'chapter_id'];
+
     /**
      * Display a listing of the resource.
      */
@@ -25,6 +29,9 @@ class MatreialVideoController extends Controller
                 ->addIndexColumn()
                 ->editColumn('title', function ($row) {
                     return $row->title;
+                })
+                ->editColumn('image', function ($row) {
+                    return $this->getImage($row->image);
                 })
                 ->editColumn('video', function ($row) {
                     return '<a href="' . $row->video . '" download=""> تحميل الفيديو</a>';
@@ -38,7 +45,7 @@ class MatreialVideoController extends Controller
                          <button class="btn btn-danger" id="btnDelete" data-id=" ' . $row->id . ' ">حذف</button>
                          ';
                 })
-                ->rawColumns(['actions', 'title', 'video', 'chapter_id'])
+                ->rawColumns(['actions', 'title', 'image', 'video', 'chapter_id'])
                 ->toJson();
         } else {
             return view($this->folderPath . 'index');
@@ -61,7 +68,7 @@ class MatreialVideoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request , MaterialVideoAction $action)
+    public function store(Request $request, MaterialVideoAction $action)
     {
         $data = $request->only($this->data);
         $action->storeMaterialVideo($data);
@@ -80,7 +87,7 @@ class MatreialVideoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id , MaterialVideoAction $action, ChapterAction $chapterAction)
+    public function edit(string $id, MaterialVideoAction $action, ChapterAction $chapterAction)
     {
         if (\request()->ajax()) {
             $html = view($this->folderPath . 'edit')
@@ -93,7 +100,7 @@ class MatreialVideoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id , MaterialVideoAction $action)
+    public function update(Request $request, string $id, MaterialVideoAction $action)
     {
         $data = $request->only($this->data);
         $action->updateMateriaVideo($id, $data);
@@ -104,7 +111,7 @@ class MatreialVideoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id  , MaterialVideoAction $action)
+    public function destroy(string $id, MaterialVideoAction $action)
     {
         $action->deleteMaterialVideo($id);
         return response()->json(['success' => 'تم حذف الفيديو الدراسي بنجاح']);

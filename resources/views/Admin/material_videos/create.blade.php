@@ -7,7 +7,12 @@
                    data-validation="required">
         </div>
         <div class="col-sm-12">
-            <label for="nameEx7" class="form-label">اسم الفيديو </label>
+            <label for="nameEx7" class="form-label"> صورة الفيديو </label>
+            <input class="form-control" name="image" type="file" value=""
+                   data-validation="required">
+        </div>
+        <div class="col-sm-12">
+            <label for="nameEx7" class="form-label"> الفيديو الدراسي </label>
             <input class="form-control" name="video" type="file" value=""
                    data-validation="required">
         </div>

@@ -16,6 +16,7 @@ class StudentAction extends MainAction
     public function storeStudent($data, $sessionsIDS)
     {
         $data['password'] = Hash::make($data['phone']);
+        $data['image'] = 'images/userImage.png';
         $student = $this->store($data);
         foreach ($sessionsIDS as $sessionID) {
             StudentSessions::create([

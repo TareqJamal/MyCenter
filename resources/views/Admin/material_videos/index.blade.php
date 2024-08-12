@@ -12,6 +12,7 @@
                 <tr>
                     <th>#</th>
                     <th>عنوان الفيديو</th>
+                    <th>صورة الفيديو</th>
                     <th> الفيديو</th>
                     <th>اسم الفصل</th>
                     <th>الاجراء</th>
@@ -42,6 +43,7 @@
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'title', name: 'title'},
+                    {data: 'image', name: 'image'},
                     {data: 'video', name: 'video'},
                     {data: 'chapter_id', name: 'chapter_id'},
                     {

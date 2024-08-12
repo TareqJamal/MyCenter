@@ -16,6 +16,7 @@ class Chapter extends Model
     }
     public function materialsVideos()
     {
+        return $this->hasMany(MaterialVideo::class,'chapter_id');
 
     }
 }

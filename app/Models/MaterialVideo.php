@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MaterialVideo extends Model
 {
     use HasFactory;
-    protected $fillable = ['title','video','chapter_id'];
+    protected $fillable = ['title','image','video','chapter_id'];
     public function chapters ()
     {
         return $this->belongsTo(Chapter::class,'chapter_id');
