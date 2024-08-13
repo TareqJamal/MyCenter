@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\NewMaterialPdfEvent;
+use App\Events\NewMaterialVideoEvent;
 use App\Http\Actions\ChapterAction;
 use App\Http\Actions\MaterialVideoAction;
 use App\Http\Controllers\Controller;
+use App\Models\Chapter;
 use App\Models\MaterialPdf;
 use App\Models\MaterialVideo;
+use App\Models\Student;
+use App\Notifications\NewMaterialPDFNotifications;
+use App\Notifications\NewMaterialVideoNotifications;
 use App\Traits\ImageTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Notification;
 use Yajra\DataTables\Facades\DataTables;
 
 class MatreialVideoController extends Controller
@@ -71,7 +79,10 @@ class MatreialVideoController extends Controller
     public function store(Request $request, MaterialVideoAction $action)
     {
         $data = $request->only($this->data);
-        $action->storeMaterialVideo($data);
+        $material_video = $action->storeMaterialVideo($data);
+        $chapter = Chapter::findorfail($material_video->chapter_id);
+        Notification::send(Student::all(), new NewMaterialVideoNotifications($chapter->name));
+        Broadcast(new NewMaterialVideoEvent('تم اضافة فيديو دراسي جديد'));
         return response()->json(['success' => 'تم اضافة الفيديو الدراسي بنجاح']);
 
     }

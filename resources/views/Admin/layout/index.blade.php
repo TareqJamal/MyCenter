@@ -5,11 +5,11 @@
       data-template="vertical-menu-template">
 
 <head>
-    <title>لوحة التحكم |  @yield('title')</title>
+    <title>لوحة التحكم | @yield('title')</title>
     @include('Admin.includes.meta')
     <!-- Canonical SEO -->
     @include('Admin.includes.css')
-    <link rel="stylesheet" href="{{asset('Admin')}}/vuexy-html-admin-template/assets/vendor/libs/select2/select2.css" />
+    <link rel="stylesheet" href="{{asset('Admin')}}/vuexy-html-admin-template/assets/vendor/libs/select2/select2.css"/>
 </head>
 
 <body>
@@ -82,7 +82,8 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel1"></h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body bodyModel">
 
@@ -119,14 +120,12 @@
 <!-- / Layout wrapper -->
 
 
-
-
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
 
 @include('Admin.includes.js')
 @yield('js')
-
+@vite('resources/js/app.js')
 </body>
 
 </html>

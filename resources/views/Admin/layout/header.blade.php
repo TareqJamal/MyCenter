@@ -90,6 +90,79 @@
                 </ul>
             </li>
             <!-- / Style Switcher-->
+            @if(\Illuminate\Support\Facades\Auth::guard('student')->check())
+                <!-- Notification -->
+                <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+                    <a class="nav-link dropdown-toggle hide-arrow notificationIcon notificationIconContent" href=""
+                       data-bs-toggle="dropdown"
+                       data-bs-auto-close="outside" aria-expanded="false">
+                        <i class="ti ti-bell ti-md"></i>
+                        @if(count(\Illuminate\Support\Facades\Auth::guard('student')->user()->unreadnotifications) > 0)
+                            <span class="badge bg-danger rounded-pill badge-notifications">{{count(\Illuminate\Support\Facades\Auth::guard('student')->user()->unreadnotifications)}}</span>
+                        @endif
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end py-0">
+                        <li class="dropdown-menu-header border-bottom">
+                            <div class="dropdown-header d-flex align-items-center py-3">
+                                <h5 class="text-body mb-0 me-auto">الاشعارات</h5>
+                                <a href="" class="dropdown-notifications-all text-body"
+                                   data-bs-toggle="tooltip" data-bs-placement="top" title="Remove all"><i
+                                        class="ti ti-basket fs-4"></i></a>
+                            </div>
+                        </li>
+                        <li class="dropdown-notifications-list scrollable-container notificationsContent">
+                            @if(count(\Illuminate\Support\Facades\Auth::guard('student')->user()->notifications) > 0)
+                                @foreach(\Illuminate\Support\Facades\Auth::guard('student')->user()->notifications as $notification)
+                                    <ul class="list-group list-group-flush">
+                                          <li class="list-group-item list-group-item-action dropdown-notifications-item notificationItem"
+                                              id="notifications">
+                                              <div class="d-flex">
+                                                  @php
+                                                      $type = basename(str_replace("\\",'/',$notification->type))
+                                                  @endphp
+                                                  <a href="{{$type=="NewMaterialPDFNotifications" ? route('students_material-pdfs.index'): route('students_material-videos.index')}}">
+                                                      <div class="flex-grow-1">
+                                                          <p class="mb-0">{{$notification->data['message']}}</p>
+                                                          <small
+                                                              class="text-muted">{{$notification->created_at->diffForHumans()}}</small>
+                                                      </div>
+                                                  </a>
+                                                  <div class="flex-shrink-0 dropdown-notifications-actions">
+                                                      @if($notification->unread())
+                                                          <a href="javascript:void(0)" id="iconRead"
+                                                             class="dropdown-notifications-read"><span
+                                                                  class="badge badge-dot"></span></a>
+                                                      @endif
+                                                      <a href="javascript:void(0)" id="iconRead"
+                                                         class="dropdown-notifications-archive"><span
+                                                              class="ti ti-x"></span></a>
+                                                  </div>
+                                              </div>
+                                          </li>
+
+                                    </ul>
+                                @endforeach
+                            @else
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                                        <div class="d-flex">
+                                            <h5>لا يوجد اشعارات اليوم</h5>
+                                        </div>
+                                    </li>
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="dropdown-menu-footer border-top">
+                            <a href=""
+                               class="dropdown-item d-flex justify-content-center text-primary p-2 h-px-40 mb-1 align-items-center">
+                               مشاهدة كل الاشعارات
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--/ Notification -->
+            @endif
+
             <!-- User -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
@@ -113,9 +186,9 @@
                                     <div class="avatar avatar-online">
                                         @if(\Illuminate\Support\Facades\Auth::guard('admin')->check())
                                             <img
-                                                    src="{{\Illuminate\Support\Facades\Auth::guard('admin')->user()->image}}"
-                                                    alt
-                                                    class="h-auto rounded-circle">
+                                                src="{{\Illuminate\Support\Facades\Auth::guard('admin')->user()->image}}"
+                                                alt
+                                                class="h-auto rounded-circle">
                                         @elseif(\Illuminate\Support\Facades\Auth::guard('student')->check())
                                             <img
                                                 src="{{\Illuminate\Support\Facades\Auth::guard('student')->user()->image}}"
@@ -127,7 +200,7 @@
                                 <div class="flex-grow-1">
                                     @if(\Illuminate\Support\Facades\Auth::guard('admin')->check())
                                         <span
-                                                class="fw-medium d-block">{{\Illuminate\Support\Facades\Auth::guard('admin')->user()->name}}</span>
+                                            class="fw-medium d-block">{{\Illuminate\Support\Facades\Auth::guard('admin')->user()->name}}</span>
                                     @elseif(\Illuminate\Support\Facades\Auth::guard('student')->check())
                                         <span
                                             class="fw-medium d-block">{{\Illuminate\Support\Facades\Auth::guard('student')->user()->name}}</span>
@@ -147,6 +220,7 @@
                         </a>
                     </li>
                 </ul>
+
             </li>
             <!--/ User -->
 

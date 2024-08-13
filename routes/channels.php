@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Student;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
-});
+//Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
+//    return (int)$user->id === (int)$id;
+//});
+Broadcast::channel('MaterialChannel', function ($student) {
+    return true;
+}, ['guards' => ['student']]);
+
+Broadcast::channel('online_students', function ($student) {
+    return ['name' => $student->name];
+}, ['guards' => ['admin','student']]);

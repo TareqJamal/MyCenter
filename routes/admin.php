@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\MatreialPdfController;
 use App\Http\Controllers\Admin\MatreialVideoController;
 use App\Http\Controllers\Admin\MoneyController;
 use App\Http\Controllers\Admin\OldStudentController;
+use App\Http\Controllers\Admin\OnlineStudentsController;
+use App\Http\Controllers\Admin\ReadNotificationController;
 use App\Http\Controllers\Admin\SessionController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Auth\AuthController;
@@ -39,14 +41,17 @@ Route::middleware(MyAuth::class)->group(function () {
     Route::resource('chapters', ChapterController::class);
     Route::resource('material-pdfs', MatreialPdfController::class);
     Route::resource('material-videos', MatreialVideoController::class);
+    Route::resource('online-students', OnlineStudentsController::class);
 });
-Route::middleware(StudentAuth::class)->group(function (){
+Route::middleware(StudentAuth::class)->group(function () {
     Route::resource('student_dashboard', StudentDashboardController::class);
     Route::resource('students_material-pdfs', StudentMatreialPdfController::class);
     Route::resource('students_material-videos', StudentMatreialVideoController::class);
     Route::resource('students_material-videos-details', StudentMatreialVideoDetailsController::class);
-    Route::post('student/settings', [StudentSettingsController::class ,'change_password'])->name('change_password');
-    Route::get('student/settings/form', [StudentSettingsController::class ,'get_settings_form'])->name('get_settings_form');
+    Route::post('student/settings', [StudentSettingsController::class, 'change_password'])->name('change_password');
+    Route::get('student/settings/form', [StudentSettingsController::class, 'get_settings_form'])->name('get_settings_form');
+    Route::get('notifications/read', [ReadNotificationController::class, 'read_notifications'])->name('read_notifications');
+    Route::get('notifications/increase', [ReadNotificationController::class, 'increase_notification_icon'])->name('increase_notification_icon');
 });
 
 Route::controller(AuthController::class)->group(function () {

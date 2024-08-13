@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\NewMaterialPdfEvent;
 use App\Http\Actions\ChapterAction;
 use App\Http\Actions\MaterialPdfAction;
 use App\Http\Controllers\Controller;
 use App\Models\Chapter;
 use App\Models\MaterialPdf;
+use App\Models\Student;
+use App\Notifications\NewMaterialPDFNotifications;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Yajra\DataTables\Facades\DataTables;
 
 class MatreialPdfController extends Controller
@@ -65,7 +70,10 @@ class MatreialPdfController extends Controller
     public function store(Request $request, MaterialPdfAction $action)
     {
         $data = $request->only($this->data);
-        $action->storeMaterialPdf($data);
+        $material_pdf = $action->storeMaterialPdf($data);
+        $chapter = Chapter::findorfail($material_pdf->chapter_id);
+        Notification::send(Student::all(), new NewMaterialPDFNotifications($chapter->name));
+        Broadcast(new NewMaterialPdfEvent('تم اضافه ملف دراسي جديد'));
         return response()->json(['success' => 'تم اضافة الملف الدراسي بنجاح']);
     }
 

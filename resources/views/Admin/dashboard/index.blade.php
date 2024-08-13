@@ -98,11 +98,11 @@
         <!--/ Monthly Campaign State -->
 
         <!-- Source Visit -->
-        <div class="col-xl-4 col-md-6 order-2 order-lg-1 mb-4">
+        <div class="col-xl-3 col-md-6 order-2 order-lg-1 mb-4">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="card-title mb-0">
-                        <h4 class="mb-0">أكثر الطلاب غيابا في هذا الشهر</h4>
+                        <h4 class="mb-0" style="font-size: 18px;font-weight: bold; color: #6b69ce">أكثر الطلاب غيابا في الشهر الحالي</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -133,11 +133,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-md-6 order-2 order-lg-1 mb-4">
+        <div class="col-xl-3 col-md-6 order-2 order-lg-1 mb-4">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="card-title mb-0">
-                        <h4 class="mb-0">أكثر الطلاب حضورا في هذا الشهر</h4>
+                        <h4 class="mb-0" style="font-size: 17px;font-weight: bold; color: #6b69ce"> أكثر الطلاب حضورا في الشهر الحالي</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -168,11 +168,42 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-md-6 order-2 order-lg-1 mb-4">
+        <div class="col-xl-3 col-md-6 order-2 order-lg-1 mb-4">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="card-title mb-0">
-                        <h4 class="mb-0">الطلاب الذي  لم يدفعوا فلوس الشهر الحالي</h4>
+                        <h4 class="mb-0" style="font-size: 14px;font-weight: bold; color: #6b69ce">الطلاب الذي  لم يدفعوا فلوس الشهر الحالي</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        @forelse($notPaidStudents as $PAStudent)
+                            <li class="mb-3 pb-1">
+                                <div class="d-flex align-items-start">
+                                    <div class="badge bg-label-secondary p-2 me-3 rounded"><i
+                                            class="ti ti-user"></i></div>
+                                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">{{$PAStudent->name}}</h6>
+                                        </div>
+                                        <div class="me-2">
+                                            <h6 class="mb-0">{{@$PAStudent->grades->name}}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        @empty
+
+                        @endforelse
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 order-2 order-lg-1 mb-4">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="card-title mb-0">
+                        <h4 class="mb-0" style="font-size: 18px;font-weight: bold; color: #6b69ce">الطلاب الاونلاين حاليا</h4>
                     </div>
                 </div>
                 <div class="card-body">

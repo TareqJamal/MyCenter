@@ -64,3 +64,18 @@
         </script>
     @endif
 @endif
+<script>
+    $(document).ready(function () {
+        $('.notificationIconContent').on('click', function () {
+            $.ajax({
+                url: '{{route('read_notifications')}}',
+                method: 'Get',
+                success: function (response) {
+                    $('.notificationsContent').html(response.notificationsContentHtml);
+                    $('.notificationIconContent').html(response.notificationsIconHtml);
+                }
+            })
+        })
+    })
+
+</script>
