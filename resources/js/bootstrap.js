@@ -61,23 +61,51 @@ window.Echo.join(`online_students`)
     .here((students) => {
         console.log('here')
         console.log(students);
-        $.ajax({
-            url: "",
-            method: "Get",
-            data: "",
-            success: function () {
+        students.forEach(student => {
+            if (student.name !== 'admin') {
+                let studentItem = `
+                <li class="mb-3 pb-1">
+                    <div class="d-flex align-items-start">
+                        <div class="badge bg-label-secondary p-2 me-3 rounded"><i class="ti ti-user"></i></div>
+                        <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                            <div class="me-2">
+                                <h6 class="mb-0" style="font-weight: bold ; color: #00b300">${student.name}</h6>
+                            </div>
 
+                        </div>
+                    </div>
+                </li>`
+                $('#students-list').append(studentItem);
             }
-        })
+        });
 
     })
-    .joining((students) => {
+    .joining((student) => {
         console.log('joining')
-        console.log(students);
+        console.log(student);
+            let studentItem = `
+                <li class="mb-3 pb-1">
+                    <div class="d-flex align-items-start">
+                        <div class="badge bg-label-secondary p-2 me-3 rounded"><i class="ti ti-user"></i></div>
+                        <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                            <div class="me-2">
+                               <h6 class="mb-0" style="font-weight: bold ; color: #00b300">${student.name}</h6>
+                            </div>
+
+                        </div>
+                    </div>
+                </li>`
+            $('#students-list').append(studentItem);
+
     })
-    .leaving((students) => {
+    .leaving((student) => {
         console.log('leaving')
-        console.log(students);
+        console.log(student);
+        $('#students-list li').each(function() {
+            if ($(this).find('h6').text().trim() === student.name.trim()) {
+                $(this).remove();
+            }
+        });
     })
     .error((error) => {
         console.error(error);

@@ -33,9 +33,9 @@
             </div>
             <div class="d-flex justify-content-md-end align-items-center gap-3 flex-wrap">
                 <select id="select2_course_select" class="select2 form-select" data-placeholder="All Courses">
-                    <option value="">كل الفصول</option>
+                    <option value="" id="all">كل الفصول</option>
                     @foreach($chapters as $chapter)
-                        <option value="{{$chapter->id}}">{{$chapter->name}}</option>
+                        <option value="{{$chapter->id}}" data-id="{{$chapter->id}}">{{$chapter->name}}</option>
                     @endforeach
                 </select>
 
@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="row gy-4 mb-4">
+            <div class="row gy-4 mb-4 content_filter">
                 @foreach($videos as $video)
                     <div class="col-sm-6 col-lg-4">
                         <div class="card p-2 h-100 shadow-none border">
@@ -107,4 +107,29 @@
             {{--            </nav>--}}
         </div>
     </div>
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function () {
+            $('#select2_course_select').on('change', function () {
+                var selectedOption = $(this).find('option:selected');
+                var chapter_id = selectedOption.data('id');
+                if (selectedOption.attr('id') === 'all') {
+                    window.location.reload();
+                } else {
+                    var url = "{{route('students_material-videos.show','chapter_id')}}";
+                    url = url.replace('chapter_id', chapter_id);
+                    $.ajax({
+                        url: url,
+                        method: "Get",
+                        success: function (response) {
+                            $(".content_filter").html(response.html)
+                        }
+                    })
+                }
+
+
+            });
+        })
+    </script>
 @endsection

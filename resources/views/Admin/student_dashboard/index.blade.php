@@ -17,7 +17,7 @@
           </span>
                         <div class="content-right">
                             <p class="mb-0">الملفات الدراسية </p>
-                            <h4 class="text-primary mb-0">34h</h4>
+                            <h4 class="text-primary mb-0">{{\App\Models\MaterialPdf::count()}}</h4>
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-3">
@@ -26,25 +26,25 @@
           </span>
                         <div class="content-right">
                             <p class="mb-0">الفيديوهات الدراسية </p>
-                            <h4 class="text-info mb-0">82%</h4>
+                            <h4 class="text-info mb-0">{{\App\Models\MaterialVideo::count()}}</h4>
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-3">
           <span class="bg-label-warning p-2 rounded">
-            <i class='ti ti-discount-check ti-xl'></i>
+            <i class='ti ti-file-analytics ti-xl'></i>
           </span>
                         <div class="content-right">
                             <p class="mb-0">امتحاناتك </p>
-                            <h4 class="text-warning mb-0">14</h4>
+                            <h4 class="text-warning mb-0">{{count(\Illuminate\Support\Facades\Auth::guard('student')->user()->exams)}}</h4>
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-3">
-          <span class="bg-label-warning p-2 rounded">
+          <span class="bg-label-danger p-2 rounded">
             <i class='ti ti-discount-check ti-xl'></i>
           </span>
                         <div class="content-right">
                             <p class="mb-0">عدد مرات الغياب </p>
-                            <h4 class="text-warning mb-0">14</h4>
+                            <h4 class="text-warning mb-0">{{count(\Illuminate\Support\Facades\Auth::guard('student')->user()->getCountAttendance)}}</h4>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                         @foreach(\Illuminate\Support\Facades\Auth::guard('student')->user()->exams as $exam)
                             <li class="d-flex mb-4 pb-1 align-items-center">
                                 <div class="avatar flex-shrink-0 me-3">
-                                    <span class="avatar-initial rounded bg-label-primary"><i class="ti ti-video ti-md"></i></span>
+                                    <span class="avatar-initial rounded bg-label-primary"><i class="ti ti-file-analytics ti-md"></i></span>
                                 </div>
                                 <div class="row w-100 align-items-center">
                                     <div class="col-sm-8 col-lg-12 col-xxl-8 mb-1 mb-sm-0 mb-lg-1 mb-xxl-0">

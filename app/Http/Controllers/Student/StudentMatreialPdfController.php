@@ -13,7 +13,7 @@ class StudentMatreialPdfController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(MaterialPdfAction $action , ChapterAction $chapterAction)
+    public function index(MaterialPdfAction $action, ChapterAction $chapterAction)
     {
         return view('Admin.student_material_pdf.index')
             ->with(['pdfs' => $action->get(), 'chapters' => $chapterAction->get()]);
@@ -40,7 +40,11 @@ class StudentMatreialPdfController extends Controller
      */
     public function show(string $id)
     {
-        //
+        if (\request()->ajax()) {
+            $pdfs = MaterialPdf::where('chapter_id', $id)->get();
+            $html = view('Admin.Render.filter_material_pdf')->with(['pdfs' => $pdfs])->render();
+            return response()->json(['html' => $html]);
+        }
     }
 
     /**

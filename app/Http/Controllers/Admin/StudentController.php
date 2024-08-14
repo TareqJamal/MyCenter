@@ -14,7 +14,7 @@ use Yajra\DataTables\Facades\DataTables;
 class StudentController extends Controller
 {
     public string $folderPath = "Admin.students.";
-    public array $data = ['name', 'phone', 'password', 'parent_phone', 'address', 'grade_id'];
+    public array $data = ['name', 'phone', 'password', 'parent_phone', 'address', 'grade_id','image'];
     public string $route = "students";
 
     /**

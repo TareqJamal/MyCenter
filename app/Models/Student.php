@@ -14,7 +14,7 @@ class Student extends Authenticatable
     use SoftDeletes;
     use Notifiable;
 
-    protected $fillable = ['name', 'phone', 'email', 'password', 'parent_phone', 'address', 'grade_id'];
+    protected $fillable = ['name', 'phone', 'email', 'password', 'parent_phone', 'image', 'address', 'grade_id'];
 
     public function grades()
     {

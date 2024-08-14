@@ -207,25 +207,10 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <ul class="list-unstyled mb-0">
-                        @forelse($notPaidStudents as $PAStudent)
-                            <li class="mb-3 pb-1">
-                                <div class="d-flex align-items-start">
-                                    <div class="badge bg-label-secondary p-2 me-3 rounded"><i
-                                            class="ti ti-user"></i></div>
-                                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">{{$PAStudent->name}}</h6>
-                                        </div>
-                                        <div class="me-2">
-                                            <h6 class="mb-0">{{@$PAStudent->grades->name}}</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        @empty
+                    <ul class="list-unstyled mb-0" id="students-list">
 
-                        @endforelse
+
+
                     </ul>
                 </div>
             </div>

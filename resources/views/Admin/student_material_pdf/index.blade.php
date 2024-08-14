@@ -6,7 +6,10 @@
     <div class="card p-0 mb-4">
         <div class="card-body d-flex flex-column flex-md-row justify-content-between p-0 pt-4">
             <div class="app-academy-md-25 card-body py-0">
-                <img src="{{asset('Admin/vuexy-html-admin-template/assets/img/illustrations/bulb-light.png')}}" class="img-fluid app-academy-img-height scaleX-n1-rtl" alt="Bulb in hand" data-app-light-img="illustrations/bulb-light.png" data-app-dark-img="illustrations/bulb-dark.png" height="90" />
+                <img src="{{asset('Admin/vuexy-html-admin-template/assets/img/illustrations/bulb-light.png')}}"
+                     class="img-fluid app-academy-img-height scaleX-n1-rtl" alt="Bulb in hand"
+                     data-app-light-img="illustrations/bulb-light.png" data-app-dark-img="illustrations/bulb-dark.png"
+                     height="90"/>
             </div>
             <div class="app-academy-md-50 card-body d-flex align-items-md-center flex-column text-md-center">
                 <h3 class="card-title mb-4 lh-sm px-md-5 lh-lg">
@@ -14,15 +17,17 @@
                     <span class="text-primary fw-medium text-nowrap">في مكان واحد</span>.
                 </h3>
                 <p class="mb-3">
-                    ألان مع منصة مدرسي متشلش هم المذاكرة لانه هدفنا انه نوفرلك كل سبل الراحة عن طريق الفيديوهات الاونلاين
+                    ألان مع منصة مدرسي متشلش هم المذاكرة لانه هدفنا انه نوفرلك كل سبل الراحة عن طريق الفيديوهات
+                    الاونلاين
                 </p>
                 <div class="d-flex align-items-center justify-content-between app-academy-md-80">
-                    <input type="search" placeholder="دور براحتك" class="form-control me-2" />
+                    <input type="search" placeholder="دور براحتك" class="form-control me-2"/>
                     <button type="submit" class="btn btn-primary btn-icon"><i class="ti ti-search"></i></button>
                 </div>
             </div>
             <div class="app-academy-md-25 d-flex align-items-end justify-content-end">
-                <img src="{{asset('Admin/vuexy-html-admin-template/assets/img/illustrations/pencil-rocket.png')}}" alt="pencil rocket" height="188" class="scaleX-n1-rtl" />
+                <img src="{{asset('Admin/vuexy-html-admin-template/assets/img/illustrations/pencil-rocket.png')}}"
+                     alt="pencil rocket" height="188" class="scaleX-n1-rtl"/>
             </div>
         </div>
     </div>
@@ -32,10 +37,10 @@
                 <h5 class="mb-1">الملفات الدراسية</h5>
             </div>
             <div class="d-flex justify-content-md-end align-items-center gap-3 flex-wrap">
-                <select id="select2_course_select" class="select2 form-select" data-placeholder="All Courses">
-                    <option value="">كل الفصول</option>
+                <select id="select2_course_select" class="select2 form-select chapters" data-placeholder="All Courses">
+                    <option value="" id="all">كل الفصول</option>
                     @foreach($chapters as $chapter)
-                        <option value="{{$chapter->id}}">{{$chapter->name}}</option>
+                        <option value="{{$chapter->id}}" data-id="{{$chapter->id}}">{{$chapter->name}}</option>
                     @endforeach
                 </select>
 
@@ -50,7 +55,7 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="row gy-4 mb-4">
+            <div class="row gy-4 mb-4 content_filter">
                 @foreach($pdfs as $pdf)
                     <div class="col-sm-6 col-lg-4">
                         <div class="card p-2 h-100 shadow-none border">
@@ -103,4 +108,30 @@
             {{--            </nav>--}}
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function () {
+            $('#select2_course_select').on('change', function () {
+                var selectedOption = $(this).find('option:selected');
+                var chapter_id = selectedOption.data('id');
+                if (selectedOption.attr('id') === 'all') {
+                    window.location.reload();
+                } else {
+                    var url = "{{route('students_material-pdfs.show','chapter_id')}}";
+                    url = url.replace('chapter_id', chapter_id);
+                    $.ajax({
+                        url: url,
+                        method: "Get",
+                        success: function (response) {
+                            $(".content_filter").html(response.html)
+                        }
+                    })
+                }
+
+
+            });
+        })
+    </script>
 @endsection

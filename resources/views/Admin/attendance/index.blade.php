@@ -20,16 +20,16 @@
                         <p style="font-weight: bold; color: green">{{ \Carbon\Carbon::parse($session->start_from)->format('H:i') }}</p>
                         <p style="font-weight: bold; color: red">{{ \Carbon\Carbon::parse($session->start_to)->format('H:i') }}</p>
                     </div>
-                    @if( now()->addHours(2)->format('H:i:s') >= $session->start_from && now()->addHours(2)->format('H:i:s') <= $session->start_to )
+                    @if( now()->addHours(3)->format('H:i:s') >= $session->start_from && now()->addHours(3)->format('H:i:s') <= $session->start_to )
                         <h4>
                             <span style="font-weight: bold; color: red">(جارية الان)</span>
                         </h4>
                         <a href="{{route('attendances.show',$session->id)}}" class="btn btn-success">تسجيل الحضور</a>
                         <a href="{{route('money.show',$session->id)}}" class="btn btn-danger"> دفع فلوس الشهر</a>
-                    @elseif(now()->addHours(2)->format('H:i:s') >= $session->start_to)
+                    @elseif(now()->addHours(3)->format('H:i:s') >= $session->start_to)
                         <h4><span style="font-weight: bold; color: green">(انتهت)</span></h4>
                         <a href="{{route('money.show',$session->id)}}" class="btn btn-danger">دفع فلوس الشهر</a>
-                    @elseif(now()->addHours(2)->format('H:i:s') < $session->start_from)
+                    @elseif(now()->addHours(3)->format('H:i:s') < $session->start_from)
                         <h4><span style="font-weight: bold; color: orange">(لم تبدء حتي الان)</span></h4>
                         <a href="{{route('money.show',$session->id)}}" class="btn btn-danger">دفع فلوس الشهر</a>
                     @endif

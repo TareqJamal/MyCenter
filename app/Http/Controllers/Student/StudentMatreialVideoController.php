@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Http\Actions\ChapterAction;
 use App\Http\Actions\MaterialVideoAction;
 use App\Http\Controllers\Controller;
+use App\Models\MaterialVideo;
 use Illuminate\Http\Request;
 
 class StudentMatreialVideoController extends Controller
@@ -39,7 +40,11 @@ class StudentMatreialVideoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        if (\request()->ajax()) {
+            $videos = MaterialVideo::where('chapter_id', $id)->get();
+            $html = view('Admin.Render.filter_material_videos')->with(['videos' => $videos])->render();
+            return response()->json(['html' => $html]);
+        }
     }
 
     /**

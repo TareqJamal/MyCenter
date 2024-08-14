@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\MatreialPdfController;
 use App\Http\Controllers\Admin\MatreialVideoController;
 use App\Http\Controllers\Admin\MoneyController;
 use App\Http\Controllers\Admin\OldStudentController;
+use App\Http\Controllers\Admin\OnlineStudentsContoller;
 use App\Http\Controllers\Admin\OnlineStudentsController;
 use App\Http\Controllers\Admin\ReadNotificationController;
 use App\Http\Controllers\Admin\SessionController;
@@ -41,7 +42,7 @@ Route::middleware(MyAuth::class)->group(function () {
     Route::resource('chapters', ChapterController::class);
     Route::resource('material-pdfs', MatreialPdfController::class);
     Route::resource('material-videos', MatreialVideoController::class);
-    Route::resource('online-students', OnlineStudentsController::class);
+    Route::resource('online-students', OnlineStudentsContoller::class);
 });
 Route::middleware(StudentAuth::class)->group(function () {
     Route::resource('student_dashboard', StudentDashboardController::class);
