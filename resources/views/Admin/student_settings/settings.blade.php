@@ -8,11 +8,11 @@
         <div class="row">
             <div class="col-6 mb-3">
                 <label for="nameBasic" class="form-label">كلمة المرور الجديدة</label>
-                <input type="password" class="form-control" name="password" data-validation="confirmation , required , length" data-validation-length="min8">
+                <input type="password" class="form-control" name="password" data-validation="confirmation">
             </div>
             <div class="col-6 mb-3">
                 <label for="nameBasic" class="form-label">تاكيد كلمة المرور الجديدة</label>
-                <input type="password" class="form-control" name="password_confirmation" data-validation-length="min8" data-validation="required">
+                <input type="password" class="form-control" name="password_confirmation" >
             </div>
             <div class="col-6 mb-3">
                 <label for="nameBasic" class="form-label">تغير صورة البروفايل</label>

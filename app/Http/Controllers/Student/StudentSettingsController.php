@@ -16,7 +16,11 @@ class StudentSettingsController extends Controller
     public function change_password(Request $request)
     {
         $student = Student::findorfail(Auth::guard('student')->id());
-        $student->password = Hash::make($request->password);
+        if (isset($request->password))
+        {
+            $student->password = Hash::make($request->password);
+        }
+
         $student->image = $this->uploadImage($request->image, 'student_images');
         $student->save();
         return redirect()->route('student_dashboard.index');

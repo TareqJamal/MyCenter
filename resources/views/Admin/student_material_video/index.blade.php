@@ -16,10 +16,10 @@
                 <p class="mb-3">
                     ألان مع منصة مدرسي متشلش هم المذاكرة لانه هدفنا انه نوفرلك كل سبل الراحة عن طريق الفيديوهات الاونلاين
                 </p>
-                <div class="d-flex align-items-center justify-content-between app-academy-md-80">
-                    <input type="search" placeholder="دور براحتك" class="form-control me-2" />
-                    <button type="submit" class="btn btn-primary btn-icon"><i class="ti ti-search"></i></button>
-                </div>
+{{--                <div class="d-flex align-items-center justify-content-between app-academy-md-80">--}}
+{{--                    <input type="search" placeholder="دور براحتك" class="form-control me-2" />--}}
+{{--                    <button type="submit" class="btn btn-primary btn-icon"><i class="ti ti-search"></i></button>--}}
+{{--                </div>--}}
             </div>
             <div class="app-academy-md-25 d-flex align-items-end justify-content-end">
                 <img src="{{asset('Admin/vuexy-html-admin-template/assets/img/illustrations/pencil-rocket.png')}}" alt="pencil rocket" height="188" class="scaleX-n1-rtl" />
@@ -51,7 +51,7 @@
         </div>
         <div class="card-body">
             <div class="row gy-4 mb-4 content_filter">
-                @foreach($videos as $video)
+                @forelse($videos as $video)
                     <div class="col-sm-6 col-lg-4">
                         <div class="card p-2 h-100 shadow-none border">
                             <div class="rounded-2 text-center mb-3">
@@ -78,33 +78,12 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <h3 style="text-align: center">لم يتم تحميل فيديوهات دراسية حتي الان</h3>
+                @endforelse
+
             </div>
-            {{--            <nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center">--}}
-            {{--                <ul class="pagination">--}}
-            {{--                    <li class="page-item prev">--}}
-            {{--                        <a class="page-link" href="javascript:void(0);"><i class="ti ti-chevron-left ti-xs scaleX-n1-rtl"></i></a>--}}
-            {{--                    </li>--}}
-            {{--                    <li class="page-item active">--}}
-            {{--                        <a class="page-link" href="javascript:void(0);">1</a>--}}
-            {{--                    </li>--}}
-            {{--                    <li class="page-item">--}}
-            {{--                        <a class="page-link" href="javascript:void(0);">2</a>--}}
-            {{--                    </li>--}}
-            {{--                    <li class="page-item">--}}
-            {{--                        <a class="page-link" href="javascript:void(0);">3</a>--}}
-            {{--                    </li>--}}
-            {{--                    <li class="page-item">--}}
-            {{--                        <a class="page-link" href="javascript:void(0);">4</a>--}}
-            {{--                    </li>--}}
-            {{--                    <li class="page-item">--}}
-            {{--                        <a class="page-link" href="javascript:void(0);">5</a>--}}
-            {{--                    </li>--}}
-            {{--                    <li class="page-item next">--}}
-            {{--                        <a class="page-link" href="javascript:void(0);"><i class="ti ti-chevron-right ti-xs scaleX-n1-rtl"></i></a>--}}
-            {{--                    </li>--}}
-            {{--                </ul>--}}
-            {{--            </nav>--}}
+
         </div>
     </div>
 @endsection

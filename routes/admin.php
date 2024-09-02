@@ -59,6 +59,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login/check/admin', 'checkLoginAdmin')->name('loginAdmin');
     Route::post('/login/check/student', 'checkLoginStudent')->name('loginStudent');
     Route::get('/logout', 'logoutAdmin')->name('logout');
-    Route::get('/login/admin', 'getFormLoginAdmin')->name('loginFormAdmin');
+    Route::get('/', 'getFormLoginAdmin')->name('loginFormAdmin');
     Route::get('/login/student', 'getFormLoginStudent')->name('loginFormStudent');
 });
